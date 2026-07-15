@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://mojakeorphanagehome.co.ke/sitemap.xml
