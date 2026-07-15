@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <title>Mojake Orphanage · Our Story & Mission | Kisii, Kenya</title>
-  <!-- Font Awesome 6 (free) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <!-- Google Fonts: Montserrat + Open Sans -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mojake Orphanage · Sponsor a Child | Kisii, Kenya</title>
+  
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  
   <style>
-    /* ----- RESET & VARIABLES (same as homepage) ----- */
+    /* ─────────────── RESET & BASE ─────────────── */
     * {
       margin: 0;
       padding: 0;
@@ -18,29 +21,41 @@
 
     :root {
       --forest: #2C5F2D;
+      --forest-light: #3d7a3e;
       --dark-blue: #1A2E40;
-      --white: #FFFFFF;
-      --sunset-yellow: #FDCA40;
+      --dark-blue-light: #243b52;
+      --white: #ffffff;
+      --off-white: #f7f9fc;
       --warm-orange: #F79824;
+      --sunset-yellow: #FDCA40;
       --earth-brown: #7B4B3A;
-      --sky-blue: #ADD8E6;
-      --gray-light: #F8F9FA;
-      --shadow: 0 20px 30px -10px rgba(0,0,0,0.15);
-      --transition: all 0.3s ease;
+      --gray-100: #f0f2f5;
+      --gray-200: #e4e7ed;
+      --gray-600: #6b7280;
+      --gray-800: #1f2937;
+      --shadow-sm: 0 2px 12px rgba(0,0,0,0.08);
+      --shadow-md: 0 8px 30px rgba(0,0,0,0.12);
+      --shadow-lg: 0 20px 60px rgba(0,0,0,0.15);
+      --radius: 20px;
+      --transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
-      font-family: 'Open Sans', sans-serif;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       color: var(--dark-blue);
-      background-color: var(--white);
+      background: var(--white);
       line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
     }
 
-    h1, h2, h3, h4 {
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 700;
-      line-height: 1.2;
+    img {
+      max-width: 100%;
+      display: block;
     }
 
     a {
@@ -49,643 +64,1021 @@
     }
 
     .container {
-      max-width: 1280px;
+      max-width: 1200px;
       margin: 0 auto;
       padding: 0 24px;
     }
 
-    /* ----- BUTTONS ----- */
-    .btn {
-      display: inline-block;
-      padding: 12px 28px;
-      border-radius: 50px;
-      font-weight: 600;
-      font-size: 1rem;
-      transition: var(--transition);
-      cursor: pointer;
-      border: 2px solid transparent;
-      box-shadow: 0 8px 16px -6px rgba(0,0,0,0.1);
+    section {
+      padding: 80px 0;
     }
 
-    .btn-primary {
-      background-color: var(--sunset-yellow);
-      color: var(--dark-blue);
-    }
-    .btn-primary:hover {
-      background-color: var(--warm-orange);
-      transform: translateY(-3px);
-    }
-
-    .btn-outline {
-      background-color: transparent;
-      border: 2px solid var(--white);
-      color: var(--white);
-    }
-    .btn-outline:hover {
-      background-color: var(--white);
-      color: var(--dark-blue);
-    }
-
-    /* ----- HEADER / NAV (identical to homepage, with Ask AI button) ----- */
-    header {
-      position: absolute;
-      width: 100%;
-      top: 0;
-      left: 0;
-      z-index: 100;
-      padding: 16px 32px;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.2), transparent);
-    }
-
-    .nav-bar {
+    /* ─────────────── FLOATING NAVIGATION ─────────────── */
+    .navbar {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 40px);
+      max-width: 1200px;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(16px) saturate(180%);
+      -webkit-backdrop-filter: blur(16px) saturate(180%);
+      border-radius: 80px;
+      padding: 8px 16px 8px 24px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      flex-wrap: wrap;
+      z-index: 1000;
+      box-shadow: var(--shadow-md);
+      border: 1px solid rgba(255,255,255,0.3);
+      transition: all 0.3s ease;
     }
 
-    .logo img {
-      height: 60px;
-      width: auto;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      transition: var(--transition);
+    .navbar.scrolled {
+      top: 12px;
+      background: rgba(255,255,255,0.96);
+      box-shadow: var(--shadow-lg);
     }
-    .logo img:hover {
-      transform: scale(1.02);
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nav-logo img {
+      height: 48px;
+      width: auto;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+
+    .nav-logo span {
+      font-weight: 800;
+      font-size: 1.15rem;
+      color: var(--dark-blue);
+      letter-spacing: -0.5px;
+    }
+    .nav-logo span .highlight {
+      color: var(--forest);
     }
 
     .nav-links {
       display: flex;
-      gap: 36px;
-      font-weight: 600;
-      color: var(--white);
-      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      align-items: center;
+      gap: 8px;
+      list-style: none;
     }
+
     .nav-links a {
-      position: relative;
-      padding-bottom: 4px;
+      padding: 8px 18px;
+      border-radius: 40px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      color: var(--gray-600);
+      transition: var(--transition);
     }
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0%;
-      height: 2px;
-      background-color: var(--sunset-yellow);
-      transition: width 0.25s;
-    }
-    .nav-links a:hover::after,
-    .nav-links a.active::after {
-      width: 100%;
-    }
+
+    .nav-links a:hover,
     .nav-links a.active {
-      color: var(--sunset-yellow);
+      color: var(--dark-blue);
+      background: var(--gray-100);
     }
 
-    .nav-buttons {
+    .nav-links a.active {
+      font-weight: 600;
+      color: var(--forest);
+      background: rgba(44, 95, 45, 0.1);
+    }
+
+    .nav-cta {
       display: flex;
-      gap: 15px;
       align-items: center;
+      gap: 12px;
     }
 
-    /* AI button (Gemini-like style) */
-    .ai-btn {
-      background-color: transparent;
-      border: 2px solid var(--sky-blue);
-      padding: 8px 22px;
+    .nav-cta .btn-donate {
+      background: var(--warm-orange);
+      color: var(--white);
+      padding: 10px 28px;
       border-radius: 40px;
-      color: white;
-      font-weight: 700;
+      font-weight: 600;
+      font-size: 0.9rem;
       transition: var(--transition);
-      text-shadow: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .ai-btn:hover {
-      background-color: var(--sky-blue);
-      color: var(--dark-blue);
-      border-color: var(--sunset-yellow);
-    }
-
-    .login-btn {
-      background-color: transparent;
-      border: 2px solid var(--sunset-yellow);
-      padding: 8px 22px;
-      border-radius: 40px;
-      color: white;
-      font-weight: 700;
-      transition: var(--transition);
-      text-shadow: none;
-    }
-    .login-btn:hover {
-      background-color: var(--sunset-yellow);
-      color: var(--dark-blue);
-      border-color: var(--warm-orange);
-    }
-
-    .donate-btn-header {
-      background-color: var(--warm-orange);
-      padding: 8px 26px;
-      border-radius: 40px;
-      color: var(--dark-blue);
-      font-weight: 700;
-      border: 2px solid var(--sunset-yellow);
-    }
-    .donate-btn-header:hover {
-      background-color: var(--sunset-yellow);
-      border-color: var(--warm-orange);
-    }
-
-    /* mobile menu toggle */
-    .menu-toggle {
-      display: none;
-      font-size: 2rem;
-      color: white;
-      cursor: pointer;
-      background: transparent;
       border: none;
-      transition: var(--transition);
-    }
-    .menu-toggle:hover {
-      color: var(--sunset-yellow);
+      cursor: pointer;
     }
 
-    .mobile-menu {
+    .nav-cta .btn-donate:hover {
+      background: #e07f1a;
+      transform: scale(1.04);
+    }
+
+    .nav-cta .btn-login {
+      background: transparent;
+      color: var(--gray-600);
+      padding: 10px 20px;
+      border-radius: 40px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: var(--transition);
+      border: none;
+      cursor: pointer;
+    }
+
+    .nav-cta .btn-login:hover {
+      background: var(--gray-100);
+      color: var(--dark-blue);
+    }
+
+    .hamburger {
       display: none;
       flex-direction: column;
-      width: 100%;
-      background-color: var(--dark-blue);
-      margin-top: 20px;
-      border-radius: 20px;
-      padding: 20px;
-      gap: 15px;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+    }
+
+    .hamburger span {
+      width: 26px;
+      height: 2.5px;
+      background: var(--dark-blue);
+      border-radius: 4px;
+      transition: var(--transition);
+    }
+
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    .hamburger.active span:nth-child(2) {
       opacity: 0;
-      transform: translateY(-10px);
-      transition: opacity 0.3s ease, transform 0.3s ease;
-      pointer-events: none;
     }
-    .mobile-menu.show {
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 80px;
+      left: 20px;
+      right: 20px;
+      background: rgba(255,255,255,0.98);
+      backdrop-filter: blur(12px);
+      border-radius: 24px;
+      padding: 30px 24px;
+      box-shadow: var(--shadow-lg);
+      z-index: 999;
+      flex-direction: column;
+      gap: 12px;
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .mobile-nav.open {
       display: flex;
-      opacity: 1;
-      transform: translateY(0);
-      pointer-events: all;
     }
-    .mobile-menu a {
+
+    .mobile-nav a {
+      padding: 14px 18px;
+      border-radius: 16px;
+      font-weight: 500;
+      color: var(--gray-800);
+      transition: var(--transition);
+      font-size: 1.05rem;
+    }
+
+    .mobile-nav a:hover,
+    .mobile-nav a.active {
+      background: var(--gray-100);
+      color: var(--forest);
+    }
+
+    .mobile-nav .mobile-cta {
+      margin-top: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .mobile-nav .mobile-cta a {
+      text-align: center;
+      padding: 14px;
+      border-radius: 40px;
+    }
+
+    .mobile-nav .mobile-cta .btn-donate-mobile {
+      background: var(--warm-orange);
       color: white;
       font-weight: 600;
-      padding: 10px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.2);
-    }
-    .mobile-menu a:last-child {
-      border-bottom: none;
-    }
-    .mobile-menu a.active {
-      color: var(--sunset-yellow);
     }
 
-    /* ----- PAGE HERO (panoramic image) ----- */
-    .page-hero {
-      height: 60vh;
-      min-height: 400px;
-      background: linear-gradient( rgba(26,46,64,0.6), rgba(44,95,45,0.6) ), url('header-image.jpg') center/cover no-repeat;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      color: var(--white);
-      position: relative;
-    }
-    .page-hero h1 {
-      font-size: clamp(2.8rem, 8vw, 4.5rem);
-      text-shadow: 0 4px 12px rgba(0,0,0,0.4);
-      animation: fadeInUp 1s ease;
-    }
-    .page-hero p {
-      font-size: 1.3rem;
-      max-width: 600px;
-      margin: 20px auto 0;
-    }
-
-    /* ----- CONTENT SECTIONS ----- */
-    .section-padding {
-      padding: 80px 0;
-    }
-    .bg-light {
-      background-color: var(--gray-light);
-    }
-
-    .story-block {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 50px;
-      align-items: center;
-    }
-    .story-block.reverse {
-      flex-direction: row-reverse;
-    }
-    .story-text {
-      flex: 1 1 400px;
-    }
-    .story-text h2 {
-      font-size: 2.5rem;
-      color: var(--forest);
-      margin-bottom: 25px;
-      position: relative;
-    }
-    .story-text h2:after {
-      content: '';
-      display: block;
-      width: 80px;
-      height: 4px;
-      background: var(--warm-orange);
-      margin-top: 15px;
-    }
-    .story-text p {
-      font-size: 1.15rem;
-      margin-bottom: 20px;
-      color: #2d2d2d;
-    }
-    .story-image {
-      flex: 1 1 400px;
-      border-radius: 30px;
-      overflow: hidden;
-      box-shadow: var(--shadow);
-    }
-    .story-image img {
-      width: 100%;
-      height: auto;
-      display: block;
-      transition: transform 0.5s;
-    }
-    .story-image:hover img {
-      transform: scale(1.02);
-    }
-
-    /* Tree of Life icon */
-    .tree-icon {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      margin: 40px 0 20px;
-    }
-    .tree-icon i {
-      font-size: 3.5rem;
-      color: var(--forest);
-    }
-
-    /* ----- TEAM GRID ----- */
-    .team-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 30px;
-      margin-top: 40px;
-    }
-    .team-card {
-      background: var(--white);
-      border-radius: 30px;
-      overflow: hidden;
-      box-shadow: var(--shadow);
-      transition: var(--transition);
-      text-align: center;
-      border-bottom: 5px solid transparent;
-    }
-    .team-card:hover {
-      transform: translateY(-10px);
-      border-bottom-color: var(--forest);
-    }
-    .team-card img {
-      width: 100%;
-      height: 280px;
-      object-fit: cover;
-      transition: transform 0.5s;
-    }
-    .team-card:hover img {
-      transform: scale(1.02);
-    }
-    .team-info {
-      padding: 20px 15px 25px;
-    }
-    .team-info h3 {
-      font-size: 1.6rem;
+    .mobile-nav .mobile-cta .btn-login-mobile {
+      background: var(--gray-100);
       color: var(--dark-blue);
     }
-    .team-info .role {
-      color: var(--forest);
-      font-weight: 600;
-      margin: 8px 0 12px;
-      display: inline-block;
-      padding: 4px 16px;
-      background: rgba(44,95,45,0.1);
-      border-radius: 50px;
+
+    /* ─────────────── PAGE HERO ─────────────── */
+    .page-hero {
+      padding: 160px 0 60px;
+      background: linear-gradient(135deg, #e8f0e8 0%, #d4e4d4 50%, #c5d8c5 100%);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
     }
-    .team-info p {
-      color: #3d3d3d;
+
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(44,95,45,0.08) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .page-hero h1 {
+      font-size: clamp(2.8rem, 5vw, 4rem);
+      font-weight: 900;
+      letter-spacing: -1.5px;
+      color: var(--dark-blue);
+      position: relative;
+      z-index: 2;
+    }
+
+    .page-hero h1 .accent {
+      color: var(--forest);
+    }
+
+    .page-hero p {
+      font-size: 1.2rem;
+      color: var(--gray-600);
+      max-width: 600px;
+      margin: 16px auto 0;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ─────────────── WHY SPONSOR SECTION ─────────────── */
+    .why-sponsor {
+      background: var(--off-white);
+      padding: 60px 0;
+    }
+
+    .why-sponsor h2 {
+      text-align: center;
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 40px;
+    }
+
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .benefit-card {
+      background: var(--white);
+      padding: 28px 20px;
+      border-radius: var(--radius);
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      border: 1px solid rgba(0,0,0,0.04);
+    }
+
+    .benefit-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .benefit-card .icon {
+      font-size: 2.2rem;
+      color: var(--forest);
+      margin-bottom: 12px;
+    }
+
+    .benefit-card h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .benefit-card p {
+      color: var(--gray-600);
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+
+    /* ─────────────── SPONSOR MAIN ─────────────── */
+    .sponsor-main {
+      padding: 60px 0 80px;
+    }
+
+    .sponsor-layout {
+      display: flex;
+      gap: 40px;
+    }
+
+    /* Sidebar filters */
+    .filters {
+      flex: 0 0 260px;
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      box-shadow: var(--shadow-sm);
+      align-self: start;
+      position: sticky;
+      top: 100px;
+      border: 1px solid rgba(0,0,0,0.04);
+    }
+
+    .filters h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .filters h3 i {
+      color: var(--forest);
+    }
+
+    .filter-group {
+      margin-bottom: 24px;
+    }
+
+    .filter-group label {
+      font-weight: 600;
+      display: block;
+      margin-bottom: 10px;
+      font-size: 0.9rem;
+    }
+
+    .filter-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .filter-btn {
+      background: var(--gray-100);
+      padding: 6px 16px;
+      border-radius: 40px;
+      cursor: pointer;
+      transition: var(--transition);
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--gray-600);
+      border: none;
+    }
+
+    .filter-btn:hover {
+      background: var(--gray-200);
+    }
+
+    .filter-btn.active {
+      background: var(--forest);
+      color: white;
+    }
+
+    .reset-filters {
+      background: none;
+      border: none;
+      color: var(--warm-orange);
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.85rem;
+      transition: var(--transition);
+      padding: 4px 0;
+    }
+
+    .reset-filters:hover {
+      color: #e07f1a;
+    }
+
+    /* Child cards grid */
+    .children-grid {
+      flex: 1;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 30px;
+    }
+
+    .child-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      text-align: center;
+      padding: 30px 20px 28px;
+      border: 1px solid rgba(0,0,0,0.04);
+    }
+
+    .child-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--forest);
+    }
+
+    .child-avatar {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 18px;
+      border: 4px solid var(--forest);
+      box-shadow: 0 8px 20px rgba(44, 95, 45, 0.15);
+      transition: var(--transition);
+    }
+
+    .child-card:hover .child-avatar {
+      border-color: var(--warm-orange);
+      transform: scale(1.02);
+    }
+
+    .child-card h3 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
+    .child-details {
+      margin: 14px 0 18px;
+      color: var(--gray-600);
       font-size: 0.95rem;
     }
 
-    /* ----- FOOTER (simplified, consistent with homepage) ----- */
-    .footer {
-      background-color: var(--dark-blue);
-      color: var(--white);
-      padding: 60px 0 30px;
+    .child-details p {
+      margin: 4px 0;
     }
-    .footer .footer-columns {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1.5fr;
-      gap: 40px;
-      border-bottom: 1px solid rgba(255,255,255,0.2);
-      padding-bottom: 40px;
-      margin-bottom: 30px;
+
+    .child-details i {
+      color: var(--forest);
+      width: 24px;
     }
-    .footer-col h4 {
-      font-size: 1.2rem;
-      margin-bottom: 20px;
-    }
-    .footer-col p, .footer-col a {
-      color: rgba(255,255,255,0.8);
+
+    .sponsor-btn {
+      background: var(--forest);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 40px;
+      font-weight: 700;
       font-size: 0.95rem;
+      cursor: pointer;
+      transition: var(--transition);
+      width: 100%;
+    }
+
+    .sponsor-btn:hover {
+      background: var(--forest-light);
+      transform: scale(1.02);
+    }
+
+    /* No results */
+    .no-results {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--gray-600);
+      font-size: 1.1rem;
+    }
+
+    .no-results i {
+      font-size: 3rem;
+      color: var(--gray-200);
+      margin-bottom: 16px;
+    }
+
+    /* ─────────────── CTA SECTION ─────────────── */
+    .cta-section {
+      background: var(--dark-blue);
+      color: white;
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    .cta-section h2 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .cta-section p {
+      opacity: 0.8;
+      max-width: 500px;
+      margin: 0 auto 32px;
+      font-size: 1.05rem;
+    }
+
+    .cta-section .btn-cta {
+      background: var(--warm-orange);
+      color: var(--dark-blue);
+      padding: 16px 40px;
+      border-radius: 60px;
+      font-weight: 700;
+      font-size: 1rem;
+      border: none;
+      cursor: pointer;
       transition: var(--transition);
     }
+
+    .cta-section .btn-cta:hover {
+      background: var(--sunset-yellow);
+      transform: scale(1.04);
+    }
+
+    /* ─────────────── FOOTER ─────────────── */
+    .footer {
+      background: #0f1a26;
+      color: rgba(255,255,255,0.8);
+      padding: 60px 0 30px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      margin-bottom: 30px;
+    }
+
+    .footer-col h4 {
+      color: white;
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    .footer-col p,
+    .footer-col a {
+      font-size: 0.9rem;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.7);
+    }
+
     .footer-col a:hover {
       color: var(--sunset-yellow);
     }
-    .footer-col i {
-      margin-right: 8px;
-      color: var(--sunset-yellow);
+
+    .footer-col .social-links {
+      display: flex;
+      gap: 12px;
+      margin-top: 16px;
     }
-    .quick-links {
-      list-style: none;
-    }
-    .quick-links li {
-      margin-bottom: 12px;
-    }
-    .quick-links a {
-      text-decoration: none;
-      display: inline-flex;
+
+    .footer-col .social-links a {
+      display: flex;
       align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      transition: var(--transition);
+      font-size: 1.1rem;
     }
+
+    .footer-col .social-links a:hover {
+      background: var(--forest);
+      color: white;
+    }
+
     .footer-bottom {
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      gap: 20px;
+      gap: 16px;
+      font-size: 0.85rem;
+      opacity: 0.7;
     }
-    .footer-credit a {
+
+    .footer-bottom .credit a {
       color: var(--sunset-yellow);
-      text-decoration: underline;
     }
 
-    /* ----- ANIMATIONS ----- */
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* ----- RESPONSIVE ----- */
+    /* ─────────────── RESPONSIVE ─────────────── */
     @media (max-width: 1024px) {
-      .footer-columns { grid-template-columns: 1fr 1fr; }
-    }
-    @media (max-width: 768px) {
-      .nav-links, .nav-buttons { display: none; }
-      .menu-toggle { display: block; }
-      .story-block, .story-block.reverse { flex-direction: column; }
-      .footer-columns { grid-template-columns: 1fr; }
-      .footer-bottom { flex-direction: column; text-align: center; }
+      .benefits-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .filters {
+        flex: 0 0 220px;
+      }
     }
 
-    /* helper */
-    .social a {
-      color: white;
-      margin-right: 15px;
-      font-size: 1.5rem;
-      transition: var(--transition);
+    @media (max-width: 992px) {
+      .sponsor-layout {
+        flex-direction: column;
+      }
+
+      .filters {
+        position: static;
+        width: 100%;
+        margin-bottom: 30px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
     }
-    .social a:hover { color: var(--sunset-yellow); }
+
+    @media (max-width: 768px) {
+      .navbar {
+        top: 12px;
+        padding: 6px 12px 6px 16px;
+        border-radius: 60px;
+        width: calc(100% - 24px);
+      }
+
+      .nav-links,
+      .nav-cta {
+        display: none;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .page-hero {
+        padding: 120px 0 40px;
+      }
+
+      .page-hero h1 {
+        font-size: 2.4rem;
+      }
+
+      .benefits-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+
+      .benefit-card {
+        padding: 20px 16px;
+      }
+
+      .benefit-card .icon {
+        font-size: 1.8rem;
+      }
+
+      .children-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+
+      .child-avatar {
+        width: 110px;
+        height: 110px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .cta-section h2 {
+        font-size: 1.8rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .children-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .benefits-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .filters .filter-options {
+        justify-content: center;
+      }
+
+      .child-avatar {
+        width: 130px;
+        height: 130px;
+      }
+    }
   </style>
 </head>
 <body>
-  <!-- Header (same as homepage with Ask AI button) -->
-  <header>
-    <div class="nav-bar">
-      <div class="logo">
-        <a href="index.html">
-          <img src="images/logo.jpg" alt="Mojake Orphanage logo" onerror="this.src='https://via.placeholder.com/180x80?text=Mojake'">
-        </a>
-      </div>
-      <nav class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="story.html" class="active">Our Story</a>
-        <a href="sponsor.html" class="active">Sponsor</a>
-        <a href="stories.html" class="active">Stories</a>
-        <a href="contact.html" class="active">Contact</a>
-      </nav>
-      <div class="nav-buttons">
-        <!-- Ask AI button (opens DeepSeek) -->
-        <a href="https://chat.deepseek.com" target="_blank" class="ai-btn"><i class="fas fa-robot"></i> Ask AI</a>
-        <a href="login.html" class="login-btn"><i class="fas fa-user"></i> Log in</a>
-        <a href="donate.html" class="donate-btn-header">Donate</a>
-      </div>
-      <button class="menu-toggle" id="menuToggle" aria-label="Menu"><i class="fas fa-bars"></i></button>
-    </div>
-    <!-- Mobile menu -->
-    <div class="mobile-menu" id="mobileMenu">
-      <a href="index.html">Home</a>
-      <a href="our-story.html" class="active">Our Story</a>
-      <a href="sponsor.html" class="active">Sponsor</a>
-      <a href="stories.html" class="active">Stories</a>
-      <a href="contact.html" class="active">Contact</a>
-      <a href="https://chat.deepseek.com" target="_blank"><i class="fas fa-robot"></i> Ask AI</a>
-      <a href="login.html"><i class="fas fa-user"></i> Log in</a>
-      <a href="donate.html">Donate</a>
-    </div>
-  </header>
 
-  <!-- Page Hero: panoramic image of orphanage with caretakers -->
+  <!-- ─── FLOATING NAVIGATION ─── -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-logo">
+      <img src="images/logo.jpg" alt="Mojake Orphanage" onerror="this.src='https://via.placeholder.com/48x48?text=M'">
+      <span>Mojake<span class="highlight">.</span></span>
+    </div>
+
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="our-story.html">Our Story</a></li>
+      <li><a href="sponsor.html" class="active">Sponsor</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+
+    <div class="nav-cta">
+      <button class="btn-login" onclick="window.location.href='login.html'"><i class="fas fa-user"></i> Log in</button>
+      <button class="btn-donate" onclick="window.location.href='donate.html'">Donate</button>
+    </div>
+
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- ─── MOBILE NAV ─── -->
+  <div class="mobile-nav" id="mobileNav">
+    <a href="index.html">Home</a>
+    <a href="our-story.html">Our Story</a>
+    <a href="sponsor.html" class="active">Sponsor</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="contact.html">Contact</a>
+    <div class="mobile-cta">
+      <a href="login.html" class="btn-login-mobile"><i class="fas fa-user"></i> Log in</a>
+      <a href="donate.html" class="btn-donate-mobile">Donate</a>
+    </div>
+  </div>
+
+  <!-- ─── PAGE HERO ─── -->
   <section class="page-hero">
-    <div>
-      <h1>Our Story & Mission</h1>
-      <p>Rooted in Kisii, growing with love</p>
+    <div class="container">
+      <h1>Sponsor a <span class="accent">Child</span></h1>
+      <p>Choose a child to sponsor and transform their life with education, healthcare, and love.</p>
     </div>
   </section>
 
-  <main>
-    <!-- Our Beginning block -->
-    <section class="section-padding">
-      <div class="container story-block">
-        <div class="story-text">
-          <h2>Our Beginning</h2>
-          <p>Mojake Orphanage was founded in 2015 by local elders and educators who saw a need to care for children who had lost their parents due to illness and hardship. Named after the Swahili words "<strong>Mo</strong>yo" (heart) and "<strong>Jake</strong>" (his/her), Mojake means "their heart" — a place where every child’s heart is nurtured.</p>
-          <p>Deeply rooted in the Kisii community, we began in a small rented house with just five children. Today, thanks to the generosity of neighbours, churches, and international friends, we have grown into a loving home for over 50 children, while staying true to our local values of <em>obosiemo</em> (compassion) and <em>obwato</em> (togetherness).</p>
-          <p><i class="fas fa-map-marker-alt" style="color: var(--forest);"></i> Located in the lush hills of Kisii County, we remain a community-based organisation run by local staff who understand the traditions and language of the children.</p>
+  <!-- ─── WHY SPONSOR ─── -->
+  <section class="why-sponsor">
+    <div class="container">
+      <h2>Why Sponsor a Child?</h2>
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <div class="icon"><i class="fas fa-graduation-cap"></i></div>
+          <h3>Education</h3>
+          <p>Sponsorship covers school fees, uniforms, and supplies.</p>
         </div>
-        <div class="story-image">
-          <img src="images/logo.jpg" alt="Mojake orphanage building with caretakers" onerror="this.src='https://via.placeholder.com/600x400?text=Orphanage+Building'">
+        <div class="benefit-card">
+          <div class="icon"><i class="fas fa-heartbeat"></i></div>
+          <h3>Healthcare</h3>
+          <p>Regular checkups, vaccinations, and nutritious meals.</p>
         </div>
-      </div>
-    </section>
-
-    <!-- Our Philosophy: Tree of Life -->
-    <section class="section-padding bg-light">
-      <div class="container story-block reverse">
-        <div class="story-text">
-          <h2>Our Philosophy: The Tree of Life</h2>
-          <div class="tree-icon">
-            <i class="fas fa-tree"></i>
-            <i class="fas fa-heart"></i>
-            <i class="fas fa-leaf"></i>
-          </div>
-          <p>In African tradition, the Baobab is the "Tree of Life" — a gathering place that provides shelter, food, and wisdom. At Mojake, we see ourselves as that tree. Our <strong>roots</strong> are the Kisii community and our founders. Our <strong>trunk</strong> is the dedicated staff who provide daily care. Our <strong>branches</strong> reach out to sponsors, volunteers, and partners who help us grow. And the <strong>fruit</strong> are the children who, once nurtured, will give back to their community.</p>
-          <p>We believe in holistic growth: mind (education), body (health & nutrition), and spirit (emotional support & cultural pride). Every child is encouraged to stay connected to their heritage while gaining skills for a bright future.</p>
-          <p><i class="fas fa-quote-left" style="color: var(--warm-orange);"></i> Just as a tree needs strong roots, a child needs a loving foundation. That is what we provide — a place to belong.</p>
+        <div class="benefit-card">
+          <div class="icon"><i class="fas fa-hand-holding-heart"></i></div>
+          <h3>Emotional Support</h3>
+          <p>A loving family environment and counselling.</p>
         </div>
-        <div class="story-image">
-          <img src="images/logo.jpg" alt="Baobab tree symbolizing life" onerror="this.src='https://via.placeholder.com/600x400?text=Baobab+Tree'">
+        <div class="benefit-card">
+          <div class="icon"><i class="fas fa-chart-line"></i></div>
+          <h3>Future Leaders</h3>
+          <p>Empower children to become self-reliant adults.</p>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Meet the Team (Trust builders) -->
-    <section class="section-padding">
-      <div class="container">
-        <h2 class="section-title" style="text-align: center; margin-bottom: 20px;"><span>Meet the team</span></h2>
-        <p style="text-align: center; max-width: 700px; margin: 0 auto 40px;">The heart of Mojake is our dedicated staff — local caretakers, social workers, and leaders who pour their lives into these children.</p>
-        <div class="team-grid">
-          <!-- team member 1 (director) -->
-          <div class="team-card">
-            <img src="team1.jpg" alt="Director" onerror="this.src='https://via.placeholder.com/400x300?text=Director'">
-            <div class="team-info">
-              <h3>James Ombati</h3>
-              <span class="role">Founder & Director</span>
-              <p>A former teacher from Kisii, James has dedicated his life to child welfare. He ensures every child feels loved and has access to education.</p>
+  <!-- ─── SPONSOR MAIN ─── -->
+  <section class="sponsor-main">
+    <div class="container">
+      <div class="sponsor-layout">
+        <!-- Filter Sidebar -->
+        <aside class="filters">
+          <h3><i class="fas fa-sliders-h"></i> Filters</h3>
+          <div class="filter-group">
+            <label>Age</label>
+            <div class="filter-options" id="ageFilter">
+              <span data-age="all" class="filter-btn active">All</span>
+              <span data-age="5-7" class="filter-btn">5–7 yrs</span>
+              <span data-age="8-12" class="filter-btn">8–12 yrs</span>
+              <span data-age="13-17" class="filter-btn">13–17 yrs</span>
             </div>
           </div>
-          <!-- team member 2 (social worker) -->
-          <div class="team-card">
-            <img src="team2.jpg" alt="Social Worker" onerror="this.src='https://via.placeholder.com/400x300?text=Social+Worker'">
-            <div class="team-info">
-              <h3>Grace Akinyi</h3>
-              <span class="role">Social Worker</span>
-              <p>Grace counsels children and connects them with relatives. Her warm smile makes every child feel safe and heard.</p>
+          <div class="filter-group">
+            <label>Gender</label>
+            <div class="filter-options" id="genderFilter">
+              <span data-gender="all" class="filter-btn active">All</span>
+              <span data-gender="boy" class="filter-btn">Boy</span>
+              <span data-gender="girl" class="filter-btn">Girl</span>
             </div>
           </div>
-          <!-- team member 3 (house mother) -->
-          <div class="team-card">
-            <img src="team3.jpg" alt="House Mother" onerror="this.src='https://via.placeholder.com/400x300?text=House+Mother'">
-            <div class="team-info">
-              <h3>Mama Lucy</h3>
-              <span class="role">Senior House Mother</span>
-              <p>With 10 years of experience, Mama Lucy ensures the children are well-fed, healthy, and go to school with a smile.</p>
-            </div>
-          </div>
-          <!-- team member 4 (house mother) -->
-          <div class="team-card">
-            <img src="team4.jpg" alt="House Mother" onerror="this.src='https://via.placeholder.com/400x300?text=House+Mother'">
-            <div class="team-info">
-              <h3>Mary Moraa</h3>
-              <span class="role">House Mother</span>
-              <p>Mary helps with homework and organises playtime. She’s known for her delicious ugali and stories.</p>
-            </div>
-          </div>
-          <!-- team member 5 (nurse) -->
-          <div class="team-card">
-            <img src="team5.jpg" alt="Nurse" onerror="this.src='https://via.placeholder.com/400x300?text=Nurse'">
-            <div class="team-info">
-              <h3>Emily Kerubo</h3>
-              <span class="role">Nurse & Nutritionist</span>
-              <p>Emily monitors children’s health and prepares nutritious meals. She also teaches hygiene practices.</p>
-            </div>
-          </div>
-          <!-- team member 6 (volunteer coordinator) -->
-          <div class="team-card">
-            <img src="team6.jpg" alt="Volunteer Coordinator" onerror="this.src='https://via.placeholder.com/400x300?text=Coordinator'">
-            <div class="team-info">
-              <h3>Daniel Nyakundi</h3>
-              <span class="role">Volunteer Coordinator</span>
-              <p>Daniel welcomes visitors and organises community outreach. He’s passionate about sharing Kisii culture.</p>
-            </div>
-          </div>
-        </div>
+          <button class="reset-filters" id="resetFilters"><i class="fas fa-undo-alt"></i> Reset all</button>
+        </aside>
+
+        <!-- Child Cards Grid -->
+        <div class="children-grid" id="childrenGrid"></div>
       </div>
-    </section>
-  </main>
+    </div>
+  </section>
 
-  <!-- Footer (simplified, with quick links and credit) -->
+  <!-- ─── CTA SECTION ─── -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Ready to Make a Difference?</h2>
+      <p>Every child deserves a chance. Your sponsorship provides hope, education, and a brighter future.</p>
+      <button class="btn-cta" onclick="window.location.href='donate.html'">Donate Now</button>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ─── -->
   <footer class="footer">
     <div class="container">
-      <div class="footer-columns">
+      <div class="footer-grid">
         <div class="footer-col">
           <h4>Mojake Orphanage</h4>
-          <p><i class="fas fa-map-marker-alt"></i> Kisii County, Kenya</p>
-          <p><i class="fas fa-phone-alt"></i> +254 700 123 456</p>
-          <p><i class="fas fa-envelope"></i> info@mojakeorphanage.org</p>
-        </div>
-        <div class="footer-col">
-          <h4>Quick Links</h4>
-          <ul class="quick-links">
-            <li><a href="#"><i class="fas fa-chevron-right"></i> About Us</a></li>
-            <li><a href="#"><i class="fas fa-chevron-right"></i> Sponsor a Child</a></li>
-            <li><a href="#"><i class="fas fa-chevron-right"></i> Donate</a></li>
-            <li><a href="#"><i class="fas fa-chevron-right"></i> Volunteer</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Resources</h4>
-          <ul class="quick-links">
-            <li><a href="#"><i class="fas fa-chevron-right"></i> News & Stories</a></li>
-            <li><a href="#"><i class="fas fa-chevron-right"></i> Annual Reports</a></li>
-            <li><a href="#"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Follow Us</h4>
-          <div class="social">
+          <p><i class="fas fa-map-marker-alt" style="width:20px;"></i> Kisii County, Kenya</p>
+          <p><i class="fas fa-phone-alt" style="width:20px;"></i> +254 700 123 456</p>
+          <p><i class="fas fa-envelope" style="width:20px;"></i> info@mojakeorphanage.org</p>
+          <div class="social-links">
             <a href="#"><i class="fab fa-facebook-f"></i></a>
             <a href="#"><i class="fab fa-twitter"></i></a>
             <a href="#"><i class="fab fa-instagram"></i></a>
             <a href="#"><i class="fab fa-youtube"></i></a>
           </div>
         </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <a href="our-story.html">Our Story</a><br>
+          <a href="sponsor.html">Sponsor a Child</a><br>
+          <a href="donate.html">Donate</a><br>
+          <a href="gallery.html">Gallery</a>
+        </div>
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <a href="stories.html">Stories of Hope</a><br>
+          <a href="#">Annual Reports</a><br>
+          <a href="contact.html">Contact Us</a>
+        </div>
+        <div class="footer-col">
+          <h4>Get Involved</h4>
+          <a href="sponsor.html">Sponsor</a><br>
+          <a href="donate.html">Donate</a><br>
+          <a href="contact.html">Volunteer</a>
+        </div>
       </div>
       <div class="footer-bottom">
-        <div>© <span id="currentYear"></span> Mojake Orphanage — Kisii County, Kenya</div>
-        <div class="footer-credit">Developed by <a href="https://www.worldwayswebdevelopers.co.ke" target="_blank">worldways web-developers</a></div>
+        <span>© <span id="currentYear"></span> Mojake Orphanage — Kisii County, Kenya</span>
+        <span class="credit">Developed by <a href="https://www.worldwayswebdevelopers.co.ke" target="_blank">worldways web-developers</a></span>
       </div>
     </div>
   </footer>
 
   <script>
-    (function() {
-      // Mobile menu toggle
-      const menuToggle = document.getElementById('menuToggle');
-      const mobileMenu = document.getElementById('mobileMenu');
-      if (menuToggle) {
-        menuToggle.addEventListener('click', () => {
-          mobileMenu.classList.toggle('show');
-          const icon = menuToggle.querySelector('i');
-          if (mobileMenu.classList.contains('show')) {
-            icon.classList.remove('fa-bars');
-            icon.classList.add('fa-times');
-          } else {
-            icon.classList.remove('fa-times');
-            icon.classList.add('fa-bars');
-          }
-        });
+    // ─── Sample children data ───
+    const childrenData = [
+      { id: 1, name: "James", age: 9, gender: "boy", hobby: "Loves football ⚽", img: "images/m1.jpg", ageGroup: "8-12" },
+      { id: 2, name: "Amina", age: 12, gender: "girl", hobby: "Dreams of becoming a doctor 🩺", img: "images/m2.jpg", ageGroup: "8-12" },
+      { id: 3, name: "Grace", age: 7, gender: "girl", hobby: "Loves singing and dancing 🎤", img: "images/m1.jpg", ageGroup: "5-7" },
+      { id: 4, name: "Daniel", age: 14, gender: "boy", hobby: "Enjoys drawing and art 🎨", img: "images/m2.jpg", ageGroup: "13-17" },
+      { id: 5, name: "Mary", age: 6, gender: "girl", hobby: "Loves reading storybooks 📚", img: "images/m1.jpg", ageGroup: "5-7" },
+      { id: 6, name: "Samuel", age: 10, gender: "boy", hobby: "Passionate about mathematics 🧮", img: "images/m2.jpg", ageGroup: "8-12" },
+      { id: 7, name: "Esther", age: 15, gender: "girl", hobby: "Wants to be a teacher 👩‍🏫", img: "images/m1.jpg", ageGroup: "13-17" },
+      { id: 8, name: "Brian", age: 8, gender: "boy", hobby: "Loves playing with toy cars 🚗", img: "images/m2.jpg", ageGroup: "5-7" }
+    ];
+
+    const placeholderImg = "https://via.placeholder.com/140x140?text=Child";
+
+    // ─── Render children ───
+    function renderChildren(ageFilter, genderFilter) {
+      const grid = document.getElementById("childrenGrid");
+      let filtered = [...childrenData];
+
+      if (ageFilter !== "all") {
+        filtered = filtered.filter(child => child.ageGroup === ageFilter);
+      }
+      if (genderFilter !== "all") {
+        filtered = filtered.filter(child => child.gender === genderFilter);
       }
 
-      // Dynamic copyright year
-      document.getElementById('currentYear').textContent = new Date().getFullYear();
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div class="no-results">
+            <i class="fas fa-child"></i>
+            <p>No children match the filters. Try adjusting your search.</p>
+          </div>
+        `;
+        return;
+      }
 
-      // Optional: smooth scroll if any anchor links
-    })();
+      let html = "";
+      filtered.forEach(child => {
+        const imgSrc = child.img ? child.img : placeholderImg;
+        html += `
+          <div class="child-card" data-id="${child.id}">
+            <img src="${imgSrc}" alt="${child.name}" class="child-avatar" onerror="this.src='${placeholderImg}'">
+            <h3>${child.name}</h3>
+            <div class="child-details">
+              <p><i class="fas fa-calendar-alt"></i> Age: ${child.age}</p>
+              <p><i class="fas fa-heart"></i> ${child.hobby}</p>
+            </div>
+            <button class="sponsor-btn" data-name="${child.name}" data-id="${child.id}">Sponsor ${child.name}</button>
+          </div>
+        `;
+      });
+      grid.innerHTML = html;
+
+      document.querySelectorAll('.sponsor-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const childName = btn.getAttribute('data-name');
+          window.location.href = `donate.html?child=${encodeURIComponent(childName)}`;
+        });
+      });
+    }
+
+    // ─── Filter state ───
+    let currentAge = "all";
+    let currentGender = "all";
+
+    function updateFilters() {
+      renderChildren(currentAge, currentGender);
+    }
+
+    // ─── Filter buttons ───
+    const ageBtns = document.querySelectorAll('#ageFilter .filter-btn');
+    const genderBtns = document.querySelectorAll('#genderFilter .filter-btn');
+
+    ageBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        ageBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentAge = btn.getAttribute('data-age');
+        updateFilters();
+      });
+    });
+
+    genderBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        genderBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentGender = btn.getAttribute('data-gender');
+        updateFilters();
+      });
+    });
+
+    document.getElementById('resetFilters').addEventListener('click', () => {
+      currentAge = "all";
+      currentGender = "all";
+      ageBtns.forEach(btn => {
+        if (btn.getAttribute('data-age') === 'all') btn.classList.add('active');
+        else btn.classList.remove('active');
+      });
+      genderBtns.forEach(btn => {
+        if (btn.getAttribute('data-gender') === 'all') btn.classList.add('active');
+        else btn.classList.remove('active');
+      });
+      updateFilters();
+    });
+
+    // ─── Floating navbar scroll effect ───
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 30) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    // ─── Hamburger toggle ───
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobileNav');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      mobileNav.classList.toggle('open');
+    });
+
+    mobileNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        mobileNav.classList.remove('open');
+      });
+    });
+
+    // ─── Dynamic copyright year ───
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+    // ─── Initial render ───
+    renderChildren(currentAge, currentGender);
   </script>
-  <!-- Note: Replace placeholder images with actual files:
-        header-image.jpg (panoramic of orphanage with caretakers)
-        team1.jpg ... team6.jpg (professional photos)
-        tree-of-life.jpg (optional baobab image)
-  -->
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mojake Orphanage · Gallery | Kisii, Kenya</title>
+  <title>Mojake Orphanage · Our Story & Mission | Kisii, Kenya</title>
   
   <!-- Font Awesome 6 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
@@ -282,7 +282,7 @@
 
     /* ─────────────── PAGE HERO ─────────────── */
     .page-hero {
-      padding: 160px 0 60px;
+      padding: 160px 0 80px;
       background: linear-gradient(135deg, #e8f0e8 0%, #d4e4d4 50%, #c5d8c5 100%);
       text-align: center;
       position: relative;
@@ -323,222 +323,266 @@
       z-index: 2;
     }
 
-    /* ─────────────── GALLERY SECTION ─────────────── */
-    .gallery-section {
-      background: var(--off-white);
-      padding: 60px 0 80px;
-    }
-
-    .gallery-grid {
+    /* ─────────────── CONTENT BLOCKS ─────────────── */
+    .story-block {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 20px;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      margin-bottom: 60px;
     }
 
-    .gallery-item {
-      position: relative;
-      overflow: hidden;
+    .story-block:last-child {
+      margin-bottom: 0;
+    }
+
+    .story-block.reverse {
+      direction: rtl;
+    }
+
+    .story-block.reverse > * {
+      direction: ltr;
+    }
+
+    .story-text h2 {
+      font-size: 2.4rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 20px;
+      color: var(--dark-blue);
+    }
+
+    .story-text h2 span {
+      color: var(--forest);
+    }
+
+    .story-text p {
+      color: var(--gray-600);
+      font-size: 1.05rem;
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    .story-text p:last-child {
+      margin-bottom: 0;
+    }
+
+    .story-image {
       border-radius: var(--radius);
-      cursor: pointer;
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
       background: var(--gray-200);
-      aspect-ratio: 4/3;
+    }
+
+    .story-image img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .story-image:hover img {
+      transform: scale(1.02);
+    }
+
+    /* ─────────────── TREE OF LIFE SECTION ─────────────── */
+    .tree-section {
+      background: var(--off-white);
+    }
+
+    .tree-section .container {
+      max-width: 900px;
+    }
+
+    .tree-content {
+      text-align: center;
+    }
+
+    .tree-content h2 {
+      font-size: 2.4rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 12px;
+    }
+
+    .tree-content h2 span {
+      color: var(--forest);
+    }
+
+    .tree-content .subtitle {
+      color: var(--gray-600);
+      font-size: 1.05rem;
+      max-width: 600px;
+      margin: 0 auto 40px;
+    }
+
+    .tree-icons {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .tree-icons .icon-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .tree-icons .icon-item i {
+      font-size: 2.8rem;
+      color: var(--forest);
+    }
+
+    .tree-icons .icon-item span {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--gray-600);
+    }
+
+    .tree-content p {
+      color: var(--gray-600);
+      font-size: 1.05rem;
+      line-height: 1.8;
+      max-width: 700px;
+      margin: 0 auto 16px;
+    }
+
+    .tree-content .quote {
+      font-style: italic;
+      border-left: 4px solid var(--warm-orange);
+      padding-left: 24px;
+      margin: 32px auto 0;
+      max-width: 600px;
+      color: var(--earth-brown);
+    }
+
+    /* ─────────────── TEAM SECTION ─────────────── */
+    .team-section {
+      background: var(--white);
+    }
+
+    .team-section h2 {
+      text-align: center;
+      font-size: 2.4rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 12px;
+    }
+
+    .team-section .subtitle {
+      text-align: center;
+      color: var(--gray-600);
+      max-width: 500px;
+      margin: 0 auto 48px;
+      font-size: 1.05rem;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+
+    .team-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      overflow: hidden;
       box-shadow: var(--shadow-sm);
       transition: var(--transition);
+      border: 1px solid rgba(0,0,0,0.04);
     }
 
-    .gallery-item:hover {
-      transform: translateY(-4px);
+    .team-card:hover {
+      transform: translateY(-6px);
       box-shadow: var(--shadow-md);
     }
 
-    .gallery-item img {
+    .team-card img {
       width: 100%;
-      height: 100%;
+      height: 300px;
       object-fit: cover;
-      transition: transform 0.5s ease, filter 0.3s ease;
-      display: block;
     }
 
-    .gallery-item:hover img {
-      transform: scale(1.06);
-      filter: brightness(0.85);
+    .team-card .info {
+      padding: 24px 24px 28px;
+      text-align: center;
     }
 
-    .gallery-overlay {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
-      padding: 30px 20px 20px;
-      transform: translateY(100%);
-      transition: transform 0.4s ease;
-      color: white;
-    }
-
-    .gallery-item:hover .gallery-overlay {
-      transform: translateY(0);
-    }
-
-    .gallery-overlay h3 {
-      font-size: 1.1rem;
+    .team-card .info h3 {
+      font-size: 1.3rem;
       font-weight: 700;
       margin-bottom: 4px;
     }
 
-    .gallery-overlay p {
-      font-size: 0.85rem;
-      opacity: 0.85;
-    }
-
-    .gallery-item .zoom-icon {
-      position: absolute;
-      top: 16px;
-      right: 16px;
-      background: rgba(255,255,255,0.9);
-      color: var(--dark-blue);
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      transform: scale(0.8);
-      transition: var(--transition);
-      font-size: 1rem;
-    }
-
-    .gallery-item:hover .zoom-icon {
-      opacity: 1;
-      transform: scale(1);
-    }
-
-    /* ─────────────── LIGHTBOX ─────────────── */
-    .lightbox {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.94);
-      z-index: 2000;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-    }
-
-    .lightbox.active {
-      display: flex;
-    }
-
-    .lightbox-content {
-      position: relative;
-      max-width: 92%;
-      max-height: 85vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .lightbox-img {
-      max-width: 100%;
-      max-height: 80vh;
-      object-fit: contain;
-      transition: transform 0.25s ease;
-      cursor: zoom-in;
-      border-radius: 8px;
-    }
-
-    .lightbox-img.zoomed {
-      transform: scale(1.8);
-      cursor: zoom-out;
-    }
-
-    .lightbox-nav {
-      position: absolute;
-      top: 50%;
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      transform: translateY(-50%);
-      padding: 0 10px;
-      pointer-events: none;
-    }
-
-    .nav-btn {
-      background: rgba(255,255,255,0.15);
-      color: white;
-      border: none;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      font-size: 1.8rem;
-      cursor: pointer;
-      pointer-events: auto;
-      transition: var(--transition);
-      backdrop-filter: blur(4px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .nav-btn:hover {
-      background: var(--warm-orange);
-      transform: scale(1.05);
-    }
-
-    .close-lightbox {
-      position: absolute;
-      top: 24px;
-      right: 32px;
-      color: white;
-      font-size: 2.5rem;
-      cursor: pointer;
-      z-index: 2001;
-      background: none;
-      border: none;
-      transition: var(--transition);
-      opacity: 0.7;
-    }
-
-    .close-lightbox:hover {
-      opacity: 1;
-      transform: rotate(90deg);
-    }
-
-    .lightbox-info {
-      position: absolute;
-      bottom: 28px;
-      left: 50%;
-      transform: translateX(-50%);
-      color: rgba(255,255,255,0.8);
-      font-size: 0.85rem;
-      background: rgba(0,0,0,0.5);
-      padding: 8px 20px;
-      border-radius: 40px;
-      backdrop-filter: blur(4px);
-      text-align: center;
-      pointer-events: none;
-    }
-
-    .lightbox-info .counter {
-      opacity: 0.6;
-    }
-
-    .zoom-hint {
-      position: absolute;
-      bottom: 80px;
-      left: 50%;
-      transform: translateX(-50%);
-      color: rgba(255,255,255,0.5);
-      font-size: 0.75rem;
-      background: rgba(0,0,0,0.3);
+    .team-card .info .role {
+      display: inline-block;
+      background: rgba(44, 95, 45, 0.08);
+      color: var(--forest);
       padding: 4px 16px;
       border-radius: 40px;
-      pointer-events: none;
-      white-space: nowrap;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .team-card .info p {
+      color: var(--gray-600);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    /* ─────────────── VALUES SECTION ─────────────── */
+    .values-section {
+      background: var(--off-white);
+    }
+
+    .values-section h2 {
+      text-align: center;
+      font-size: 2.4rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 48px;
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+    }
+
+    .value-card {
+      background: var(--white);
+      padding: 32px 24px;
+      border-radius: var(--radius);
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      border: 1px solid rgba(0,0,0,0.04);
+    }
+
+    .value-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .value-card .icon {
+      font-size: 2.4rem;
+      color: var(--forest);
+      margin-bottom: 16px;
+    }
+
+    .value-card h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .value-card p {
+      color: var(--gray-600);
+      font-size: 0.9rem;
+      line-height: 1.6;
     }
 
     /* ─────────────── FOOTER ─────────────── */
@@ -614,9 +658,30 @@
 
     /* ─────────────── RESPONSIVE ─────────────── */
     @media (max-width: 1024px) {
-      .gallery-grid {
-        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-        gap: 16px;
+      .story-block {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        direction: ltr !important;
+      }
+
+      .story-block.reverse {
+        direction: ltr !important;
+      }
+
+      .story-block.reverse > * {
+        direction: ltr !important;
+      }
+
+      .story-image img {
+        height: 320px;
+      }
+
+      .values-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .team-grid {
+        grid-template-columns: repeat(2, 1fr);
       }
     }
 
@@ -644,35 +709,41 @@
       }
 
       .page-hero {
-        padding: 120px 0 40px;
+        padding: 120px 0 60px;
       }
 
       .page-hero h1 {
         font-size: 2.4rem;
       }
 
-      .gallery-section {
-        padding: 40px 0 60px;
+      .story-image img {
+        height: 260px;
       }
 
-      .gallery-grid {
-        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-        gap: 12px;
+      .story-text h2 {
+        font-size: 2rem;
       }
 
-      .nav-btn {
-        width: 40px;
-        height: 40px;
-        font-size: 1.4rem;
+      .team-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
       }
 
-      .lightbox-img.zoomed {
-        transform: scale(1.5);
+      .team-card img {
+        height: 240px;
       }
 
-      .close-lightbox {
-        top: 16px;
-        right: 20px;
+      .values-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+
+      .tree-icons {
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+
+      .tree-icons .icon-item i {
         font-size: 2rem;
       }
 
@@ -685,36 +756,27 @@
         flex-direction: column;
         text-align: center;
       }
-
-      .zoom-hint {
-        display: none;
-      }
     }
 
     @media (max-width: 480px) {
-      .gallery-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 10px;
+      .team-grid {
+        grid-template-columns: 1fr;
       }
 
-      .gallery-item {
-        aspect-ratio: 4/3;
+      .values-grid {
+        grid-template-columns: 1fr;
       }
 
-      .gallery-overlay h3 {
-        font-size: 0.9rem;
+      .team-card img {
+        height: 280px;
       }
 
-      .gallery-overlay p {
-        font-size: 0.75rem;
+      .story-text h2 {
+        font-size: 1.8rem;
       }
 
-      .gallery-item .zoom-icon {
-        width: 32px;
-        height: 32px;
-        font-size: 0.8rem;
-        top: 10px;
-        right: 10px;
+      .page-hero h1 {
+        font-size: 2rem;
       }
     }
   </style>
@@ -730,9 +792,9 @@
 
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
-      <li><a href="our-story.html">Our Story</a></li>
+      <li><a href="our-story.html" class="active">Our Story</a></li>
       <li><a href="sponsor.html">Sponsor</a></li>
-      <li><a href="gallery.html" class="active">Gallery</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
 
@@ -751,9 +813,9 @@
   <!-- ─── MOBILE NAV ─── -->
   <div class="mobile-nav" id="mobileNav">
     <a href="index.html">Home</a>
-    <a href="our-story.html">Our Story</a>
+    <a href="our-story.html" class="active">Our Story</a>
     <a href="sponsor.html">Sponsor</a>
-    <a href="gallery.html" class="active">Gallery</a>
+    <a href="gallery.html">Gallery</a>
     <a href="contact.html">Contact</a>
     <div class="mobile-cta">
       <a href="login.html" class="btn-login-mobile"><i class="fas fa-user"></i> Log in</a>
@@ -764,34 +826,173 @@
   <!-- ─── PAGE HERO ─── -->
   <section class="page-hero">
     <div class="container">
-      <h1>Our <span class="accent">Gallery</span></h1>
-      <p>Moments of joy, learning, and love at Mojake Orphanage. See the smiles you help create.</p>
+      <h1>Our Story & <span class="accent">Mission</span></h1>
+      <p>Rooted in Kisii, growing with love — discover the journey of Mojake Orphanage.</p>
     </div>
   </section>
 
-  <!-- ─── GALLERY ─── -->
-  <section class="gallery-section">
+  <!-- ─── OUR BEGINNING ─── -->
+  <section>
     <div class="container">
-      <div class="gallery-grid" id="galleryGrid">
-        <!-- Images will be injected via JS -->
+      <div class="story-block">
+        <div class="story-text">
+          <h2>Our <span>Beginning</span></h2>
+          <p>
+            Mojake Orphanage was founded in 2015 by local elders and educators who saw a 
+            growing need to care for children who had lost their parents due to illness, 
+            poverty, and hardship. The name <strong>Mojake</strong> comes from the Swahili 
+            words "<strong>Mo</strong>yo" (heart) and "<strong>Jake</strong>" (his/her) — 
+            meaning <em>"their heart"</em> — a place where every child's heart is nurtured.
+          </p>
+          <p>
+            Deeply rooted in the Kisii community, we began in a small rented house with 
+            just five children. Through the generosity of neighbours, churches, and 
+            international supporters, we have grown into a loving home for over 50 children, 
+            while staying true to our local values of <em>obosiemo</em> (compassion) and 
+            <em>obwato</em> (togetherness).
+          </p>
+        </div>
+        <div class="story-image">
+          <img src="images/hero2.jpg" alt="Mojake Orphanage beginnings" onerror="this.src='https://via.placeholder.com/600x400?text=Mojake+History'">
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ─── LIGHTBOX ─── -->
-  <div id="lightbox" class="lightbox">
-    <button class="close-lightbox" id="closeLightbox">&times;</button>
-    <div class="lightbox-content">
-      <button class="nav-btn" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
-      <img id="lightboxImg" class="lightbox-img" src="" alt="Full view">
-      <button class="nav-btn" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
+  <!-- ─── TREE OF LIFE ─── -->
+  <section class="tree-section">
+    <div class="container">
+      <div class="tree-content">
+        <h2>The <span>Tree of Life</span></h2>
+        <p class="subtitle">Our philosophy is inspired by the African Baobab — a tree that provides shelter, food, and wisdom.</p>
+        
+        <div class="tree-icons">
+          <div class="icon-item">
+            <i class="fas fa-tree"></i>
+            <span>Roots: Community</span>
+          </div>
+          <div class="icon-item">
+            <i class="fas fa-arrow-up"></i>
+            <span>Trunk: Our Staff</span>
+          </div>
+          <div class="icon-item">
+            <i class="fas fa-branch"></i>
+            <span>Branches: Partners</span>
+          </div>
+          <div class="icon-item">
+            <i class="fas fa-apple-alt"></i>
+            <span>Fruit: Our Children</span>
+          </div>
+        </div>
+
+        <p>
+          Just as the Baobab stands tall and provides for its community, Mojake Orphanage 
+          is a place of stability, growth, and nourishment. Our roots are the Kisii 
+          community and our founders. The trunk is our dedicated staff who provide 
+          daily care. Our branches reach out to sponsors, volunteers, and partners 
+          who help us grow. And the fruit are the children who, once nurtured, will 
+          give back to their community.
+        </p>
+        <p>
+          We believe in holistic growth: mind (education), body (health & nutrition), 
+          and spirit (emotional support & cultural pride). Every child is encouraged 
+          to stay connected to their heritage while gaining skills for a bright future.
+        </p>
+        <div class="quote">
+          <i class="fas fa-quote-left" style="color: var(--warm-orange); margin-right: 8px;"></i> 
+          Just as a tree needs strong roots, a child needs a loving foundation. That is 
+          what we provide — a place to belong.
+        </div>
+      </div>
     </div>
-    <div class="lightbox-info">
-      <span id="lightboxTitle"></span>
-      <span class="counter" id="lightboxCounter"></span>
+  </section>
+
+  <!-- ─── OUR VALUES ─── -->
+  <section class="values-section">
+    <div class="container">
+      <h2>Our Core <span style="color: var(--forest);">Values</span></h2>
+      <div class="values-grid">
+        <div class="value-card">
+          <div class="icon"><i class="fas fa-heart"></i></div>
+          <h3>Love</h3>
+          <p>Every child deserves to feel loved, safe, and valued.</p>
+        </div>
+        <div class="value-card">
+          <div class="icon"><i class="fas fa-graduation-cap"></i></div>
+          <h3>Education</h3>
+          <p>Education is the key to breaking the cycle of poverty.</p>
+        </div>
+        <div class="value-card">
+          <div class="icon"><i class="fas fa-hand-holding-heart"></i></div>
+          <h3>Compassion</h3>
+          <p>We treat every child with kindness, respect, and dignity.</p>
+        </div>
+        <div class="value-card">
+          <div class="icon"><i class="fas fa-users"></i></div>
+          <h3>Community</h3>
+          <p>We believe in the power of togetherness and shared responsibility.</p>
+        </div>
+      </div>
     </div>
-    <div class="zoom-hint">Click image to zoom • Arrow keys to navigate</div>
-  </div>
+  </section>
+
+  <!-- ─── MEET THE TEAM ─── -->
+  <section class="team-section">
+    <div class="container">
+      <h2>Meet the <span style="color: var(--forest);">Team</span></h2>
+      <p class="subtitle">The heart of Mojake is our dedicated staff — local caretakers, social workers, and leaders.</p>
+      <div class="team-grid">
+        <div class="team-card">
+          <img src="images/m1.jpg" alt="James Ombati - Founder" onerror="this.src='https://via.placeholder.com/400x300?text=James'">
+          <div class="info">
+            <h3>James Ombati</h3>
+            <span class="role">Founder & Director</span>
+            <p>A former teacher from Kisii, James has dedicated his life to child welfare. He ensures every child feels loved and has access to education.</p>
+          </div>
+        </div>
+        <div class="team-card">
+          <img src="images/m2.jpg" alt="Grace Akinyi - Social Worker" onerror="this.src='https://via.placeholder.com/400x300?text=Grace'">
+          <div class="info">
+            <h3>Grace Akinyi</h3>
+            <span class="role">Social Worker</span>
+            <p>Grace counsels children and connects them with relatives. Her warm smile makes every child feel safe and heard.</p>
+          </div>
+        </div>
+        <div class="team-card">
+          <img src="images/m1.jpg" alt="Mama Lucy - House Mother" onerror="this.src='https://via.placeholder.com/400x300?text=Mama+Lucy'">
+          <div class="info">
+            <h3>Mama Lucy</h3>
+            <span class="role">Senior House Mother</span>
+            <p>With 10 years of experience, Mama Lucy ensures the children are well-fed, healthy, and go to school with a smile.</p>
+          </div>
+        </div>
+        <div class="team-card">
+          <img src="images/m2.jpg" alt="Mary Moraa - House Mother" onerror="this.src='https://via.placeholder.com/400x300?text=Mary'">
+          <div class="info">
+            <h3>Mary Moraa</h3>
+            <span class="role">House Mother</span>
+            <p>Mary helps with homework and organises playtime. She's known for her delicious ugali and heartfelt stories.</p>
+          </div>
+        </div>
+        <div class="team-card">
+          <img src="images/m1.jpg" alt="Emily Kerubo - Nurse" onerror="this.src='https://via.placeholder.com/400x300?text=Emily'">
+          <div class="info">
+            <h3>Emily Kerubo</h3>
+            <span class="role">Nurse & Nutritionist</span>
+            <p>Emily monitors children's health and prepares nutritious meals. She also teaches hygiene practices.</p>
+          </div>
+        </div>
+        <div class="team-card">
+          <img src="images/m2.jpg" alt="Daniel Nyakundi - Volunteer Coordinator" onerror="this.src='https://via.placeholder.com/400x300?text=Daniel'">
+          <div class="info">
+            <h3>Daniel Nyakundi</h3>
+            <span class="role">Volunteer Coordinator</span>
+            <p>Daniel welcomes visitors and organises community outreach. He's passionate about sharing Kisii culture.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- ─── FOOTER ─── -->
   <footer class="footer">
@@ -837,131 +1038,6 @@
   </footer>
 
   <script>
-    // ─── Gallery Images (using g1.jpg through g10.jpg) ───
-    const galleryImages = [
-      { src: "images/g1.jpg", title: "Welcome to Mojake", desc: "Our home in Kisii" },
-      { src: "images/g2.jpg", title: "Classroom Moments", desc: "Learning with joy" },
-      { src: "images/g3.jpg", title: "Playtime Fun", desc: "Friends forever" },
-      { src: "images/g4.jpg", title: "Art & Craft", desc: "Creativity shines" },
-      { src: "images/g5.jpg", title: "Sports Day", desc: "Team spirit" },
-      { src: "images/g6.jpg", title: "Evening Meal", desc: "Nutritious food" },
-      { src: "images/g7.jpg", title: "Gardening", desc: "Growing together" },
-      { src: "images/g8.jpg", title: "Music Time", desc: "Melodies of hope" },
-      { src: "images/g9.jpg", title: "Study Hour", desc: "Building futures" },
-      { src: "images/g10.jpg", title: "Group Photo", desc: "One big family" }
-    ];
-
-    const placeholderImg = "https://via.placeholder.com/400x300?text=Image+Not+Found";
-
-    // ─── Render Gallery ───
-    const grid = document.getElementById('galleryGrid');
-
-    function renderGallery() {
-      let html = '';
-      galleryImages.forEach((img, index) => {
-        html += `
-          <div class="gallery-item" data-index="${index}">
-            <img src="${img.src}" alt="${img.title}" onerror="this.src='${placeholderImg}'">
-            <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
-            <div class="gallery-overlay">
-              <h3>${img.title}</h3>
-              <p>${img.desc}</p>
-            </div>
-          </div>
-        `;
-      });
-      grid.innerHTML = html;
-    }
-    renderGallery();
-
-    // ─── Lightbox ───
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightboxImg');
-    const lightboxTitle = document.getElementById('lightboxTitle');
-    const lightboxCounter = document.getElementById('lightboxCounter');
-    const closeBtn = document.getElementById('closeLightbox');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-
-    let currentIndex = 0;
-    let isZoomed = false;
-
-    function openLightbox(index) {
-      currentIndex = index;
-      updateLightbox();
-      lightbox.classList.add('active');
-      document.body.style.overflow = 'hidden';
-      isZoomed = false;
-      lightboxImg.classList.remove('zoomed');
-    }
-
-    function closeLightbox() {
-      lightbox.classList.remove('active');
-      document.body.style.overflow = '';
-    }
-
-    function updateLightbox() {
-      const img = galleryImages[currentIndex];
-      lightboxImg.src = img.src;
-      lightboxTitle.textContent = img.title;
-      lightboxCounter.textContent = `${currentIndex + 1} / ${galleryImages.length}`;
-    }
-
-    function showPrev() {
-      currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
-      updateLightbox();
-      if (isZoomed) {
-        lightboxImg.classList.remove('zoomed');
-        isZoomed = false;
-      }
-    }
-
-    function showNext() {
-      currentIndex = (currentIndex + 1) % galleryImages.length;
-      updateLightbox();
-      if (isZoomed) {
-        lightboxImg.classList.remove('zoomed');
-        isZoomed = false;
-      }
-    }
-
-    // ─── Toggle Zoom ───
-    lightboxImg.addEventListener('click', (e) => {
-      e.stopPropagation();
-      if (isZoomed) {
-        lightboxImg.classList.remove('zoomed');
-        isZoomed = false;
-      } else {
-        lightboxImg.classList.add('zoomed');
-        isZoomed = true;
-      }
-    });
-
-    // ─── Attach click events to gallery items ───
-    document.querySelectorAll('.gallery-item').forEach(item => {
-      item.addEventListener('click', () => {
-        const index = parseInt(item.getAttribute('data-index'));
-        openLightbox(index);
-      });
-    });
-
-    // ─── Lightbox controls ───
-    closeBtn.addEventListener('click', closeLightbox);
-    prevBtn.addEventListener('click', (e) => { e.stopPropagation(); showPrev(); });
-    nextBtn.addEventListener('click', (e) => { e.stopPropagation(); showNext(); });
-
-    lightbox.addEventListener('click', (e) => {
-      if (e.target === lightbox) closeLightbox();
-    });
-
-    // ─── Keyboard navigation ───
-    document.addEventListener('keydown', (e) => {
-      if (!lightbox.classList.contains('active')) return;
-      if (e.key === 'ArrowLeft') showPrev();
-      if (e.key === 'ArrowRight') showNext();
-      if (e.key === 'Escape') closeLightbox();
-    });
-
     // ─── Floating navbar scroll effect ───
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {

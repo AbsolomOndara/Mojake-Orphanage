@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <title>Mojake Orphanage · Gallery | Kisii, Kenya</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mojake Orphanage · Contact Us | Kisii, Kenya</title>
+  
   <!-- Font Awesome 6 -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  
   <style>
+    /* ─────────────── RESET & BASE ─────────────── */
     * {
       margin: 0;
       padding: 0;
@@ -17,28 +21,41 @@
 
     :root {
       --forest: #2C5F2D;
+      --forest-light: #3d7a3e;
       --dark-blue: #1A2E40;
-      --white: #FFFFFF;
-      --sunset-yellow: #FDCA40;
+      --dark-blue-light: #243b52;
+      --white: #ffffff;
+      --off-white: #f7f9fc;
       --warm-orange: #F79824;
+      --sunset-yellow: #FDCA40;
       --earth-brown: #7B4B3A;
-      --sky-blue: #ADD8E6;
-      --gray-light: #F8F9FA;
-      --shadow: 0 20px 30px -10px rgba(0,0,0,0.15);
-      --transition: all 0.3s ease;
+      --gray-100: #f0f2f5;
+      --gray-200: #e4e7ed;
+      --gray-600: #6b7280;
+      --gray-800: #1f2937;
+      --shadow-sm: 0 2px 12px rgba(0,0,0,0.08);
+      --shadow-md: 0 8px 30px rgba(0,0,0,0.12);
+      --shadow-lg: 0 20px 60px rgba(0,0,0,0.15);
+      --radius: 20px;
+      --transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
-      font-family: 'Open Sans', sans-serif;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       color: var(--dark-blue);
-      background-color: var(--white);
+      background: var(--white);
       line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
 
-    h1, h2, h3, h4 {
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 700;
-      line-height: 1.2;
+    img {
+      max-width: 100%;
+      display: block;
     }
 
     a {
@@ -47,591 +64,1052 @@
     }
 
     .container {
-      max-width: 1400px;
+      max-width: 1200px;
       margin: 0 auto;
       padding: 0 24px;
     }
 
-    /* Header (consistent) */
-    header {
-      background: linear-gradient(135deg, var(--dark-blue), #0e1f2c);
-      padding: 16px 32px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    section {
+      padding: 80px 0;
     }
-    .nav-bar {
+
+    /* ─────────────── FLOATING NAVIGATION ─────────────── */
+    .navbar {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 40px);
+      max-width: 1200px;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(16px) saturate(180%);
+      -webkit-backdrop-filter: blur(16px) saturate(180%);
+      border-radius: 80px;
+      padding: 8px 16px 8px 24px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      flex-wrap: wrap;
+      z-index: 1000;
+      box-shadow: var(--shadow-md);
+      border: 1px solid rgba(255,255,255,0.3);
+      transition: all 0.3s ease;
     }
-    .logo img {
-      height: 60px;
+
+    .navbar.scrolled {
+      top: 12px;
+      background: rgba(255,255,255,0.96);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nav-logo img {
+      height: 48px;
       width: auto;
-      border-radius: 8px;
+      border-radius: 10px;
+      object-fit: cover;
     }
+
+    .nav-logo span {
+      font-weight: 800;
+      font-size: 1.15rem;
+      color: var(--dark-blue);
+      letter-spacing: -0.5px;
+    }
+    .nav-logo span .highlight {
+      color: var(--forest);
+    }
+
     .nav-links {
       display: flex;
-      gap: 36px;
-      font-weight: 600;
-      color: var(--white);
+      align-items: center;
+      gap: 8px;
+      list-style: none;
     }
+
     .nav-links a {
-      position: relative;
-      padding-bottom: 4px;
+      padding: 8px 18px;
+      border-radius: 40px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      color: var(--gray-600);
+      transition: var(--transition);
     }
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0%;
-      height: 2px;
-      background-color: var(--sunset-yellow);
-      transition: width 0.25s;
-    }
-    .nav-links a:hover::after,
-    .nav-links a.active::after {
-      width: 100%;
-    }
+
+    .nav-links a:hover,
     .nav-links a.active {
-      color: var(--sunset-yellow);
-    }
-    .nav-buttons {
-      display: flex;
-      gap: 15px;
-      align-items: center;
-    }
-    .ai-btn {
-      background: transparent;
-      border: 2px solid var(--sky-blue);
-      padding: 8px 22px;
-      border-radius: 40px;
-      color: white;
-      font-weight: 700;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .ai-btn:hover {
-      background: var(--sky-blue);
       color: var(--dark-blue);
+      background: var(--gray-100);
     }
-    .login-btn {
-      background: transparent;
-      border: 2px solid var(--sunset-yellow);
-      padding: 8px 22px;
-      border-radius: 40px;
-      color: white;
-    }
-    .login-btn:hover {
-      background: var(--sunset-yellow);
-      color: var(--dark-blue);
-    }
-    .donate-btn-header {
-      background: var(--warm-orange);
-      padding: 8px 26px;
-      border-radius: 40px;
-      color: var(--dark-blue);
-      font-weight: 700;
-    }
-    .menu-toggle {
-      display: none;
-      font-size: 2rem;
-      color: white;
-      background: transparent;
-      border: none;
-      cursor: pointer;
-    }
-    .mobile-menu {
-      display: none;
-      flex-direction: column;
-      background: var(--dark-blue);
-      margin-top: 20px;
-      border-radius: 20px;
-      padding: 20px;
-      gap: 15px;
-    }
-    .mobile-menu.show {
-      display: flex;
-    }
-    .mobile-menu a {
-      color: white;
+
+    .nav-links a.active {
       font-weight: 600;
-      padding: 8px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.2);
+      color: var(--forest);
+      background: rgba(44, 95, 45, 0.1);
     }
 
-    /* Page Hero */
-    .page-hero {
-      background: linear-gradient(135deg, var(--forest), #1f451f);
-      color: white;
-      text-align: center;
-      padding: 60px 20px;
-    }
-    .page-hero h1 {
-      font-size: 3rem;
-      margin-bottom: 15px;
-    }
-    .page-hero p {
-      font-size: 1.2rem;
-      max-width: 700px;
-      margin: 0 auto;
-    }
-
-    /* Gallery Grid - Minimal gaps */
-    .gallery-section {
-      padding: 60px 0;
-      background: var(--gray-light);
-    }
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 5px;
-      background-color: var(--gray-light);
-    }
-    .gallery-item {
-      position: relative;
-      overflow: hidden;
-      cursor: pointer;
-      aspect-ratio: 4 / 3;
-      background-color: #e0e0e0;
-    }
-    .gallery-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s ease, filter 0.3s ease;
-      display: block;
-    }
-    .gallery-item:hover img {
-      transform: scale(1.08);
-      filter: brightness(0.9);
-    }
-    .gallery-overlay {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-      color: white;
-      padding: 20px 15px 10px;
-      transform: translateY(100%);
-      transition: transform 0.3s ease;
-      text-align: left;
-    }
-    .gallery-item:hover .gallery-overlay {
-      transform: translateY(0);
-    }
-    .gallery-overlay h3 {
-      font-size: 1.2rem;
-      margin-bottom: 5px;
-    }
-    .gallery-overlay p {
-      font-size: 0.8rem;
-      opacity: 0.9;
-    }
-
-    /* Lightbox Modal with zoom */
-    .lightbox {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.95);
-      z-index: 2000;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      cursor: pointer;
-    }
-    .lightbox.active {
-      display: flex;
-    }
-    .lightbox-content {
-      position: relative;
-      max-width: 90%;
-      max-height: 80%;
-      overflow: hidden;
+    .nav-cta {
       display: flex;
       align-items: center;
-      justify-content: center;
+      gap: 12px;
     }
-    .lightbox-img {
-      max-width: 100%;
-      max-height: 80vh;
-      object-fit: contain;
-      transition: transform 0.2s ease;
-      cursor: zoom-in;
-    }
-    .lightbox-img.zoomed {
-      transform: scale(1.8);
-      cursor: zoom-out;
-    }
-    .lightbox-nav {
-      position: absolute;
-      top: 50%;
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      transform: translateY(-50%);
-      padding: 0 20px;
-      pointer-events: none;
-    }
-    .nav-btn {
-      background: rgba(0,0,0,0.6);
-      color: white;
-      border: none;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      font-size: 2rem;
-      cursor: pointer;
-      pointer-events: auto;
-      transition: background 0.2s;
-    }
-    .nav-btn:hover {
+
+    .nav-cta .btn-donate {
       background: var(--warm-orange);
-    }
-    .close-lightbox {
-      position: absolute;
-      top: 20px;
-      right: 30px;
-      color: white;
-      font-size: 2.5rem;
+      color: var(--white);
+      padding: 10px 28px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: var(--transition);
+      border: none;
       cursor: pointer;
-      z-index: 2001;
+    }
+
+    .nav-cta .btn-donate:hover {
+      background: #e07f1a;
+      transform: scale(1.04);
+    }
+
+    .nav-cta .btn-login {
+      background: transparent;
+      color: var(--gray-600);
+      padding: 10px 20px;
+      border-radius: 40px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: var(--transition);
+      border: none;
+      cursor: pointer;
+    }
+
+    .nav-cta .btn-login:hover {
+      background: var(--gray-100);
+      color: var(--dark-blue);
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
       background: none;
       border: none;
+      cursor: pointer;
+      padding: 8px;
     }
-    .zoom-info {
-      position: absolute;
-      bottom: 20px;
+
+    .hamburger span {
+      width: 26px;
+      height: 2.5px;
+      background: var(--dark-blue);
+      border-radius: 4px;
+      transition: var(--transition);
+    }
+
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 80px;
       left: 20px;
-      color: rgba(255,255,255,0.7);
-      font-size: 0.8rem;
-      background: rgba(0,0,0,0.5);
-      padding: 5px 12px;
-      border-radius: 20px;
+      right: 20px;
+      background: rgba(255,255,255,0.98);
+      backdrop-filter: blur(12px);
+      border-radius: 24px;
+      padding: 30px 24px;
+      box-shadow: var(--shadow-lg);
+      z-index: 999;
+      flex-direction: column;
+      gap: 12px;
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .mobile-nav.open {
+      display: flex;
+    }
+
+    .mobile-nav a {
+      padding: 14px 18px;
+      border-radius: 16px;
+      font-weight: 500;
+      color: var(--gray-800);
+      transition: var(--transition);
+      font-size: 1.05rem;
+    }
+
+    .mobile-nav a:hover,
+    .mobile-nav a.active {
+      background: var(--gray-100);
+      color: var(--forest);
+    }
+
+    .mobile-nav .mobile-cta {
+      margin-top: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .mobile-nav .mobile-cta a {
+      text-align: center;
+      padding: 14px;
+      border-radius: 40px;
+    }
+
+    .mobile-nav .mobile-cta .btn-donate-mobile {
+      background: var(--warm-orange);
+      color: white;
+      font-weight: 600;
+    }
+
+    .mobile-nav .mobile-cta .btn-login-mobile {
+      background: var(--gray-100);
+      color: var(--dark-blue);
+    }
+
+    /* ─────────────── PAGE HERO ─────────────── */
+    .page-hero {
+      padding: 160px 0 60px;
+      background: linear-gradient(135deg, #e8f0e8 0%, #d4e4d4 50%, #c5d8c5 100%);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(44,95,45,0.08) 0%, transparent 70%);
+      border-radius: 50%;
       pointer-events: none;
     }
 
-    /* Footer (consistent) */
-    .footer {
-      background: var(--dark-blue);
-      color: white;
-      padding: 60px 0 30px;
+    .page-hero h1 {
+      font-size: clamp(2.8rem, 5vw, 4rem);
+      font-weight: 900;
+      letter-spacing: -1.5px;
+      color: var(--dark-blue);
+      position: relative;
+      z-index: 2;
     }
-    .footer-columns {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1.5fr;
-      gap: 40px;
-      border-bottom: 1px solid rgba(255,255,255,0.2);
-      padding-bottom: 40px;
-      margin-bottom: 30px;
+
+    .page-hero h1 .accent {
+      color: var(--forest);
     }
-    .footer-col h4 {
+
+    .page-hero p {
       font-size: 1.2rem;
-      margin-bottom: 20px;
+      color: var(--gray-600);
+      max-width: 600px;
+      margin: 16px auto 0;
+      position: relative;
+      z-index: 2;
     }
-    .footer-col p, .footer-col a {
-      color: rgba(255,255,255,0.8);
+
+    /* ─────────────── CONTACT SECTION ─────────────── */
+    .contact-section {
+      padding: 60px 0 80px;
+      background: var(--off-white);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: start;
+    }
+
+    /* Contact Info */
+    .contact-info {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 40px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid rgba(0,0,0,0.04);
+    }
+
+    .contact-info h2 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .contact-info .subtitle {
+      color: var(--gray-600);
+      margin-bottom: 32px;
       font-size: 0.95rem;
     }
+
+    .info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+      margin-bottom: 28px;
+    }
+
+    .info-item .icon {
+      width: 48px;
+      height: 48px;
+      min-width: 48px;
+      background: rgba(44, 95, 45, 0.08);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--forest);
+      font-size: 1.2rem;
+      transition: var(--transition);
+    }
+
+    .info-item:hover .icon {
+      background: var(--forest);
+      color: white;
+    }
+
+    .info-item .text h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+
+    .info-item .text p {
+      color: var(--gray-600);
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .contact-social {
+      margin-top: 32px;
+      padding-top: 28px;
+      border-top: 1px solid var(--gray-200);
+    }
+
+    .contact-social .label {
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-bottom: 12px;
+    }
+
+    .contact-social .social-links {
+      display: flex;
+      gap: 12px;
+    }
+
+    .contact-social .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--gray-100);
+      color: var(--gray-600);
+      transition: var(--transition);
+      font-size: 1.1rem;
+    }
+
+    .contact-social .social-links a:hover {
+      background: var(--forest);
+      color: white;
+      transform: translateY(-3px);
+    }
+
+    /* Contact Form */
+    .contact-form-wrapper {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 40px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid rgba(0,0,0,0.04);
+    }
+
+    .contact-form-wrapper h2 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .contact-form-wrapper .subtitle {
+      color: var(--gray-600);
+      margin-bottom: 28px;
+      font-size: 0.95rem;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      font-size: 0.85rem;
+      margin-bottom: 6px;
+      color: var(--gray-800);
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 14px 18px;
+      border-radius: 12px;
+      border: 2px solid var(--gray-200);
+      font-family: inherit;
+      font-size: 1rem;
+      transition: var(--transition);
+      background: var(--white);
+      color: var(--dark-blue);
+      outline: none;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--forest);
+      box-shadow: 0 0 0 4px rgba(44, 95, 45, 0.08);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 130px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .submit-btn {
+      background: var(--forest);
+      color: white;
+      padding: 16px 32px;
+      border: none;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: var(--transition);
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .submit-btn:hover {
+      background: var(--forest-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(44, 95, 45, 0.25);
+    }
+
+    .form-message {
+      margin-top: 16px;
+      text-align: center;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .form-message.success {
+      color: var(--forest);
+    }
+
+    .form-message.error {
+      color: #e74c3c;
+    }
+
+    /* ─────────────── MAP SECTION ─────────────── */
+    .map-section {
+      padding: 0 0 80px;
+      background: var(--off-white);
+    }
+
+    .map-container {
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      height: 380px;
+      border: 1px solid rgba(0,0,0,0.04);
+    }
+
+    .map-container iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* ─────────────── FAQ SECTION ─────────────── */
+    .faq-section {
+      background: var(--white);
+      padding: 60px 0;
+    }
+
+    .faq-section h2 {
+      text-align: center;
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 12px;
+    }
+
+    .faq-section .subtitle {
+      text-align: center;
+      color: var(--gray-600);
+      max-width: 500px;
+      margin: 0 auto 48px;
+      font-size: 1.05rem;
+    }
+
+    .faq-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .faq-item {
+      background: var(--off-white);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      transition: var(--transition);
+      border: 1px solid rgba(0,0,0,0.04);
+    }
+
+    .faq-item:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .faq-item h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--dark-blue);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .faq-item h3 i {
+      color: var(--forest);
+      font-size: 0.9rem;
+    }
+
+    .faq-item p {
+      color: var(--gray-600);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* ─────────────── FOOTER ─────────────── */
+    .footer {
+      background: #0f1a26;
+      color: rgba(255,255,255,0.8);
+      padding: 60px 0 30px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      margin-bottom: 30px;
+    }
+
+    .footer-col h4 {
+      color: white;
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    .footer-col p,
+    .footer-col a {
+      font-size: 0.9rem;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.7);
+    }
+
     .footer-col a:hover {
       color: var(--sunset-yellow);
     }
-    .quick-links {
-      list-style: none;
+
+    .footer-col .social-links {
+      display: flex;
+      gap: 12px;
+      margin-top: 16px;
     }
-    .quick-links li {
-      margin-bottom: 12px;
+
+    .footer-col .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      transition: var(--transition);
+      font-size: 1.1rem;
     }
+
+    .footer-col .social-links a:hover {
+      background: var(--forest);
+      color: white;
+    }
+
     .footer-bottom {
       display: flex;
       justify-content: space-between;
+      align-items: center;
       flex-wrap: wrap;
-      gap: 20px;
-    }
-    .footer-credit a {
-      color: var(--sunset-yellow);
-      text-decoration: underline;
-    }
-    .social a {
-      color: white;
-      margin-right: 15px;
-      font-size: 1.3rem;
+      gap: 16px;
+      font-size: 0.85rem;
+      opacity: 0.7;
     }
 
-    /* Responsive */
-    @media (max-width: 992px) {
-      .gallery-grid {
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    .footer-bottom .credit a {
+      color: var(--sunset-yellow);
+    }
+
+    /* ─────────────── RESPONSIVE ─────────────── */
+    @media (max-width: 1024px) {
+      .contact-grid {
+        gap: 30px;
+      }
+
+      .faq-grid {
+        grid-template-columns: 1fr 1fr;
       }
     }
+
+    @media (max-width: 992px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
     @media (max-width: 768px) {
-      .nav-links, .nav-buttons {
+      .navbar {
+        top: 12px;
+        padding: 6px 12px 6px 16px;
+        border-radius: 60px;
+        width: calc(100% - 24px);
+      }
+
+      .nav-links,
+      .nav-cta {
         display: none;
       }
-      .menu-toggle {
-        display: block;
+
+      .hamburger {
+        display: flex;
       }
-      .footer-columns {
+
+      .page-hero {
+        padding: 120px 0 40px;
+      }
+
+      .page-hero h1 {
+        font-size: 2.4rem;
+      }
+
+      .contact-info,
+      .contact-form-wrapper {
+        padding: 28px 20px;
+      }
+
+      .form-row {
         grid-template-columns: 1fr;
-        text-align: center;
+        gap: 0;
       }
+
+      .faq-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .map-container {
+        height: 260px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
       .footer-bottom {
         flex-direction: column;
         text-align: center;
       }
-      .page-hero h1 {
-        font-size: 2.3rem;
-      }
-      .nav-btn {
-        width: 40px;
-        height: 40px;
+    }
+
+    @media (max-width: 480px) {
+      .contact-info h2,
+      .contact-form-wrapper h2 {
         font-size: 1.5rem;
       }
-      .lightbox-img.zoomed {
-        transform: scale(1.5);
+
+      .info-item {
+        gap: 14px;
+      }
+
+      .info-item .icon {
+        width: 40px;
+        height: 40px;
+        min-width: 40px;
+        font-size: 1rem;
+      }
+
+      .submit-btn {
+        font-size: 0.95rem;
+        padding: 14px 24px;
+      }
+
+      .faq-item {
+        padding: 20px 16px;
       }
     }
   </style>
 </head>
 <body>
-  <header>
-    <div class="nav-bar">
-      <div class="logo">
-        <a href="index.html"><img src="images/logo.jpg" alt="Mojake" onerror="this.src='https://via.placeholder.com/180x80?text=Mojake'"></a>
-      </div>
-      <nav class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="our-story.html">Our Story</a>
-        <a href="sponsor.html">Sponsor</a>
-        <a href="stories.html">Stories</a>
-        <a href="gallery.html" class="active">Gallery</a>
-        <a href="contact.html">Contact</a>
-      </nav>
-      <div class="nav-buttons">
-        <a href="https://chat.deepseek.com" target="_blank" class="ai-btn"><i class="fas fa-robot"></i> Ask AI</a>
-        <a href="login.html" class="login-btn"><i class="fas fa-user"></i> Log in</a>
-        <a href="donate.html" class="donate-btn-header">Donate</a>
-      </div>
-      <button class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></button>
-    </div>
-    <div class="mobile-menu" id="mobileMenu">
-      <a href="index.html">Home</a>
-      <a href="our-story.html">Our Story</a>
-      <a href="sponsor.html">Sponsor</a>
-      <a href="stories.html">Stories</a>
-      <a href="gallery.html" class="active">Gallery</a>
-      <a href="contact.html">Contact</a>
-      <a href="https://chat.deepseek.com" target="_blank"><i class="fas fa-robot"></i> Ask AI</a>
-      <a href="login.html">Log in</a>
-      <a href="donate.html">Donate</a>
-    </div>
-  </header>
 
-  <main>
-    <div class="page-hero">
-      <div class="container">
-        <h1>Our Gallery</h1>
-        <p>Moments of joy, learning, and love at Mojake Orphanage. See the smiles you help create.</p>
-      </div>
+  <!-- ─── FLOATING NAVIGATION ─── -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-logo">
+      <img src="images/logo.jpg" alt="Mojake Orphanage" onerror="this.src='https://via.placeholder.com/48x48?text=M'">
+      <span>Mojake<span class="highlight">.</span></span>
     </div>
 
-    <section class="gallery-section">
-      <div class="gallery-grid" id="galleryGrid">
-        <!-- Images will be injected via JS -->
-      </div>
-    </section>
-  </main>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="our-story.html">Our Story</a></li>
+      <li><a href="sponsor.html">Sponsor</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+    </ul>
 
-  <!-- Lightbox Modal -->
-  <div id="lightbox" class="lightbox">
-    <button class="close-lightbox">&times;</button>
-    <div class="lightbox-content">
-      <button class="nav-btn prev"><i class="fas fa-chevron-left"></i></button>
-      <img id="lightboxImg" class="lightbox-img" src="" alt="Full view">
-      <button class="nav-btn next"><i class="fas fa-chevron-right"></i></button>
+    <div class="nav-cta">
+      <button class="btn-login" onclick="window.location.href='login.html'"><i class="fas fa-user"></i> Log in</button>
+      <button class="btn-donate" onclick="window.location.href='donate.html'">Donate</button>
     </div>
-    <div class="zoom-info">Click image to zoom • Use arrow keys to navigate</div>
+
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- ─── MOBILE NAV ─── -->
+  <div class="mobile-nav" id="mobileNav">
+    <a href="index.html">Home</a>
+    <a href="our-story.html">Our Story</a>
+    <a href="sponsor.html">Sponsor</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="contact.html" class="active">Contact</a>
+    <div class="mobile-cta">
+      <a href="login.html" class="btn-login-mobile"><i class="fas fa-user"></i> Log in</a>
+      <a href="donate.html" class="btn-donate-mobile">Donate</a>
+    </div>
   </div>
 
+  <!-- ─── PAGE HERO ─── -->
+  <section class="page-hero">
+    <div class="container">
+      <h1>Get in <span class="accent">Touch</span></h1>
+      <p>We would love to hear from you. Whether you have questions, want to volunteer, or need more information, reach out to us.</p>
+    </div>
+  </section>
+
+  <!-- ─── CONTACT SECTION ─── -->
+  <section class="contact-section">
+    <div class="container">
+      <div class="contact-grid">
+        <!-- Contact Info -->
+        <div class="contact-info">
+          <h2>Contact Information</h2>
+          <p class="subtitle">We're here to help. Reach out through any of the channels below.</p>
+
+          <div class="info-item">
+            <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
+            <div class="text">
+              <h3>Address</h3>
+              <p>Mojake Orphanage, Kisii Town, Kisii County, Kenya</p>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <div class="icon"><i class="fas fa-phone-alt"></i></div>
+            <div class="text">
+              <h3>Phone</h3>
+              <p>+254 700 123 456<br>+254 711 223 344</p>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <div class="icon"><i class="fas fa-envelope"></i></div>
+            <div class="text">
+              <h3>Email</h3>
+              <p>info@mojakeorphanage.org<br>sponsor@mojakeorphanage.org</p>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <div class="icon"><i class="fas fa-clock"></i></div>
+            <div class="text">
+              <h3>Office Hours</h3>
+              <p>Monday – Friday: 8:00 AM – 5:00 PM<br>Saturday: 9:00 AM – 1:00 PM</p>
+            </div>
+          </div>
+
+          <div class="contact-social">
+            <div class="label">Connect with us</div>
+            <div class="social-links">
+              <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+              <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+              <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="contact-form-wrapper">
+          <h2>Send a Message</h2>
+          <p class="subtitle">Fill in the form below and we'll get back to you as soon as possible.</p>
+
+          <form id="contactForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">Full Name *</label>
+                <input type="text" id="name" placeholder="Enter your full name" required>
+              </div>
+              <div class="form-group">
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" placeholder="Enter your email" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="subject">Subject</label>
+              <input type="text" id="subject" placeholder="What is this regarding?">
+            </div>
+
+            <div class="form-group">
+              <label for="message">Message *</label>
+              <textarea id="message" placeholder="Tell us how we can help..." required></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">
+              <i class="fas fa-paper-plane"></i> Send Message
+            </button>
+
+            <div id="formFeedback" class="form-message"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── MAP SECTION ─── -->
+  <section class="map-section">
+    <div class="container">
+      <div class="map-container">
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15955.427680778203!2d34.76662035!3d-0.6773803999999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182b1d7a0b2f7b6b%3A0x6c9e6e1f1e6a6e0!2sKisii%2C%20Kenya!5e0!3m2!1sen!2sus!4v1690567890123!5m2!1sen!2sus" 
+          allowfullscreen="" 
+          loading="lazy" 
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FAQ SECTION ─── -->
+  <section class="faq-section">
+    <div class="container">
+      <h2>Frequently Asked Questions</h2>
+      <p class="subtitle">Find answers to the most common questions about Mojake Orphanage.</p>
+
+      <div class="faq-grid">
+        <div class="faq-item">
+          <h3><i class="fas fa-chevron-right"></i> How can I sponsor a child?</h3>
+          <p>Visit our <a href="sponsor.html" style="color: var(--forest); font-weight: 600;">Sponsor a Child</a> page, choose a child, and follow the donation process. You can also contact us directly for more information.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3><i class="fas fa-chevron-right"></i> Can I visit the orphanage?</h3>
+          <p>Yes, we welcome visitors. Please arrange an appointment by emailing us at least two weeks in advance. We'll be happy to show you around.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3><i class="fas fa-chevron-right"></i> What volunteering opportunities are available?</h3>
+          <p>We need teachers, medical volunteers, activity coordinators, and more. Send us a message with your skills and availability, and we'll find a role for you.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3><i class="fas fa-chevron-right"></i> How are donations used?</h3>
+          <p>100% of donations go to children's education, healthcare, food, and shelter. We publish annual reports for full transparency.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3><i class="fas fa-chevron-right"></i> Can I donate items instead of money?</h3>
+          <p>Yes, we accept donations of clothes, books, toys, and educational materials. Please contact us to coordinate drop-off or shipping.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3><i class="fas fa-chevron-right"></i> Do you offer internships?</h3>
+          <p>We offer internships for social work, education, and healthcare students. Contact us with your academic background and interests.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ─── -->
   <footer class="footer">
     <div class="container">
-      <div class="footer-columns">
+      <div class="footer-grid">
         <div class="footer-col">
           <h4>Mojake Orphanage</h4>
-          <p><i class="fas fa-map-marker-alt"></i> Kisii County, Kenya</p>
-          <p><i class="fas fa-phone-alt"></i> +254 700 123 456</p>
-          <p><i class="fas fa-envelope"></i> info@mojakeorphanage.org</p>
-        </div>
-        <div class="footer-col">
-          <h4>Quick Links</h4>
-          <ul class="quick-links">
-            <li><a href="our-story.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
-            <li><a href="sponsor.html"><i class="fas fa-chevron-right"></i> Sponsor a Child</a></li>
-            <li><a href="donate.html"><i class="fas fa-chevron-right"></i> Donate</a></li>
-            <li><a href="gallery.html"><i class="fas fa-chevron-right"></i> Gallery</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Resources</h4>
-          <ul class="quick-links">
-            <li><a href="stories.html"><i class="fas fa-chevron-right"></i> Stories of Hope</a></li>
-            <li><a href="#"><i class="fas fa-chevron-right"></i> Annual Reports</a></li>
-            <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Follow Us</h4>
-          <div class="social">
+          <p><i class="fas fa-map-marker-alt" style="width:20px;"></i> Kisii County, Kenya</p>
+          <p><i class="fas fa-phone-alt" style="width:20px;"></i> +254 700 123 456</p>
+          <p><i class="fas fa-envelope" style="width:20px;"></i> info@mojakeorphanage.org</p>
+          <div class="social-links">
             <a href="#"><i class="fab fa-facebook-f"></i></a>
             <a href="#"><i class="fab fa-twitter"></i></a>
             <a href="#"><i class="fab fa-instagram"></i></a>
             <a href="#"><i class="fab fa-youtube"></i></a>
           </div>
         </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <a href="our-story.html">Our Story</a><br>
+          <a href="sponsor.html">Sponsor a Child</a><br>
+          <a href="donate.html">Donate</a><br>
+          <a href="gallery.html">Gallery</a>
+        </div>
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <a href="stories.html">Stories of Hope</a><br>
+          <a href="#">Annual Reports</a><br>
+          <a href="contact.html">Contact Us</a>
+        </div>
+        <div class="footer-col">
+          <h4>Get Involved</h4>
+          <a href="sponsor.html">Sponsor</a><br>
+          <a href="donate.html">Donate</a><br>
+          <a href="contact.html">Volunteer</a>
+        </div>
       </div>
       <div class="footer-bottom">
-        <div>© <span id="currentYear"></span> Mojake Orphanage — Kisii County, Kenya</div>
-        <div class="footer-credit">Developed by <a href="https://www.worldwayswebdevelopers.co.ke" target="_blank">worldways web-developers</a></div>
+        <span>© <span id="currentYear"></span> Mojake Orphanage — Kisii County, Kenya</span>
+        <span class="credit">Developed by <a href="https://www.worldwayswebdevelopers.co.ke" target="_blank">worldways web-developers</a></span>
       </div>
     </div>
   </footer>
 
   <script>
-    // Gallery images using local files: images/g1.jpg through images/g10.jpg
-    const galleryImages = [
-      { src: "images/g1.jpg", title: "Welcome to Mojake", desc: "Our home in Kisii" },
-      { src: "images/g2.jpg", title: "Classroom moment", desc: "Learning with joy" },
-      { src: "images/g3.jpg", title: "Playtime", desc: "Friends forever" },
-      { src: "images/g4.jpg", title: "Art & craft", desc: "Creativity shines" },
-      { src: "images/g5.jpg", title: "Sports day", desc: "Team spirit" },
-      { src: "images/g6.jpg", title: "Evening meal", desc: "Nutritious food" },
-      { src: "images/g7.jpg", title: "Gardening", desc: "Growing together" },
-      { src: "images/g8.jpg", title: "Meal Time", desc: "Nutritious Food" },
-      { src: "images/g9.jpg", title: "Gardening", desc: "Growing Together" },
-      { src: "images/g10.jpg", title: "Group photo", desc: "One big family" }
-    ];
+    // ─── WhatsApp number ───
+    const whatsappNumber = "254745688271";
 
-    // Render gallery grid
-    const grid = document.getElementById('galleryGrid');
-    function renderGallery() {
-      let html = '';
-      galleryImages.forEach((img, index) => {
-        html += `
-          <div class="gallery-item" data-index="${index}">
-            <img src="${img.src}" alt="${img.title}" onerror="this.src='https://via.placeholder.com/400x300?text=Image+Not+Found'">
-            <div class="gallery-overlay">
-              <h3>${img.title}</h3>
-              <p>${img.desc}</p>
-            </div>
-          </div>
-        `;
-      });
-      grid.innerHTML = html;
-    }
-    renderGallery();
+    // ─── Contact Form Submission ───
+    const contactForm = document.getElementById('contactForm');
+    const feedbackDiv = document.getElementById('formFeedback');
 
-    // Lightbox functionality
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightboxImg');
-    const closeBtn = document.querySelector('.close-lightbox');
-    const prevBtn = document.querySelector('.prev');
-    const nextBtn = document.querySelector('.next');
-    let currentIndex = 0;
-    let isZoomed = false;
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
 
-    function openLightbox(index) {
-      currentIndex = index;
-      const imgData = galleryImages[currentIndex];
-      lightboxImg.src = imgData.src;
-      lightbox.classList.add('active');
-      isZoomed = false;
-      lightboxImg.classList.remove('zoomed');
-    }
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const subject = document.getElementById('subject').value.trim();
+      const message = document.getElementById('message').value.trim();
 
-    function closeLightbox() {
-      lightbox.classList.remove('active');
-      isZoomed = false;
-    }
-
-    function showPrev() {
-      currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
-      const imgData = galleryImages[currentIndex];
-      lightboxImg.src = imgData.src;
-      if (isZoomed) {
-        lightboxImg.classList.remove('zoomed');
-        isZoomed = false;
+      // Validation
+      if (!name || !email || !message) {
+        feedbackDiv.className = 'form-message error';
+        feedbackDiv.innerHTML = 'Please fill in all required fields (Name, Email, Message).';
+        return;
       }
-    }
 
-    function showNext() {
-      currentIndex = (currentIndex + 1) % galleryImages.length;
-      const imgData = galleryImages[currentIndex];
-      lightboxImg.src = imgData.src;
-      if (isZoomed) {
-        lightboxImg.classList.remove('zoomed');
-        isZoomed = false;
+      if (!email.includes('@') || !email.includes('.')) {
+        feedbackDiv.className = 'form-message error';
+        feedbackDiv.innerHTML = 'Please enter a valid email address.';
+        return;
       }
-    }
 
-    lightboxImg.addEventListener('click', (e) => {
-      e.stopPropagation();
-      if (isZoomed) {
-        lightboxImg.classList.remove('zoomed');
-        isZoomed = false;
+      // Build WhatsApp message
+      let whatsappMsg = `*New Contact Message from Mojake Website*\n\n`;
+      whatsappMsg += `*Name:* ${name}\n`;
+      whatsappMsg += `*Email:* ${email}\n`;
+      if (subject) whatsappMsg += `*Subject:* ${subject}\n`;
+      whatsappMsg += `*Message:*\n${message}\n\n`;
+      whatsappMsg += `-- Sent via Mojake Contact Form --`;
+
+      const encodedMsg = encodeURIComponent(whatsappMsg);
+      const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMsg}`;
+
+      // Open WhatsApp
+      window.open(whatsappUrl, '_blank');
+
+      feedbackDiv.className = 'form-message success';
+      feedbackDiv.innerHTML = '<i class="fas fa-check-circle"></i> Redirecting to WhatsApp... Please send your message.';
+
+      contactForm.reset();
+
+      setTimeout(() => {
+        feedbackDiv.innerHTML = '';
+        feedbackDiv.className = 'form-message';
+      }, 5000);
+    });
+
+    // ─── Floating navbar scroll effect ───
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 30) {
+        navbar.classList.add('scrolled');
       } else {
-        lightboxImg.classList.add('zoomed');
-        isZoomed = true;
+        navbar.classList.remove('scrolled');
       }
     });
 
-    function attachGalleryEvents() {
-      const items = document.querySelectorAll('.gallery-item');
-      items.forEach(item => {
-        item.addEventListener('click', () => {
-          const index = parseInt(item.getAttribute('data-index'));
-          openLightbox(index);
-        });
-      });
-    }
-    attachGalleryEvents();
+    // ─── Hamburger toggle ───
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobileNav');
 
-    closeBtn.addEventListener('click', closeLightbox);
-    prevBtn.addEventListener('click', (e) => { e.stopPropagation(); showPrev(); });
-    nextBtn.addEventListener('click', (e) => { e.stopPropagation(); showNext(); });
-    lightbox.addEventListener('click', (e) => {
-      if (e.target === lightbox) closeLightbox();
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      mobileNav.classList.toggle('open');
     });
 
-    document.addEventListener('keydown', (e) => {
-      if (!lightbox.classList.contains('active')) return;
-      if (e.key === 'ArrowLeft') showPrev();
-      if (e.key === 'ArrowRight') showNext();
-      if (e.key === 'Escape') closeLightbox();
+    mobileNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        mobileNav.classList.remove('open');
+      });
     });
 
-    // Mobile menu toggle
-    const menuToggle = document.getElementById('menuToggle');
-    const mobileMenu = document.getElementById('mobileMenu');
-    if (menuToggle) {
-      menuToggle.addEventListener('click', () => {
-        mobileMenu.classList.toggle('show');
-        const icon = menuToggle.querySelector('i');
-        if (mobileMenu.classList.contains('show')) {
-          icon.classList.remove('fa-bars');
-          icon.classList.add('fa-times');
-        } else {
-          icon.classList.remove('fa-times');
-          icon.classList.add('fa-bars');
-        }
-      });
-    }
-
+    // ─── Dynamic copyright year ───
     document.getElementById('currentYear').textContent = new Date().getFullYear();
   </script>
 </body>

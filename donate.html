@@ -1,0 +1,1467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mojake Orphanage · Donate | Kisii, Kenya</title>
+  
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  
+  <style>
+    /* ─────────────── RESET & BASE ─────────────── */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --forest: #2C5F2D;
+      --forest-light: #3d7a3e;
+      --dark-blue: #1A2E40;
+      --dark-blue-light: #243b52;
+      --white: #ffffff;
+      --off-white: #f7f9fc;
+      --warm-orange: #F79824;
+      --sunset-yellow: #FDCA40;
+      --earth-brown: #7B4B3A;
+      --gray-100: #f0f2f5;
+      --gray-200: #e4e7ed;
+      --gray-600: #6b7280;
+      --gray-800: #1f2937;
+      --shadow-sm: 0 2px 12px rgba(0,0,0,0.08);
+      --shadow-md: 0 8px 30px rgba(0,0,0,0.12);
+      --shadow-lg: 0 20px 60px rgba(0,0,0,0.15);
+      --radius: 20px;
+      --transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--dark-blue);
+      background: var(--white);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    section {
+      padding: 80px 0;
+    }
+
+    /* ─────────────── FLOATING NAVIGATION ─────────────── */
+    .navbar {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 40px);
+      max-width: 1200px;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(16px) saturate(180%);
+      -webkit-backdrop-filter: blur(16px) saturate(180%);
+      border-radius: 80px;
+      padding: 8px 16px 8px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 1000;
+      box-shadow: var(--shadow-md);
+      border: 1px solid rgba(255,255,255,0.3);
+      transition: all 0.3s ease;
+    }
+
+    .navbar.scrolled {
+      top: 12px;
+      background: rgba(255,255,255,0.96);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nav-logo img {
+      height: 48px;
+      width: auto;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+
+    .nav-logo span {
+      font-weight: 800;
+      font-size: 1.15rem;
+      color: var(--dark-blue);
+      letter-spacing: -0.5px;
+    }
+    .nav-logo span .highlight {
+      color: var(--forest);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      padding: 8px 18px;
+      border-radius: 40px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      color: var(--gray-600);
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--dark-blue);
+      background: var(--gray-100);
+    }
+
+    .nav-links a.active {
+      font-weight: 600;
+      color: var(--forest);
+      background: rgba(44, 95, 45, 0.1);
+    }
+
+    .nav-cta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nav-cta .btn-donate {
+      background: var(--warm-orange);
+      color: var(--white);
+      padding: 10px 28px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: var(--transition);
+      border: none;
+      cursor: pointer;
+    }
+
+    .nav-cta .btn-donate:hover {
+      background: #e07f1a;
+      transform: scale(1.04);
+    }
+
+    .nav-cta .btn-login {
+      background: transparent;
+      color: var(--gray-600);
+      padding: 10px 20px;
+      border-radius: 40px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: var(--transition);
+      border: none;
+      cursor: pointer;
+    }
+
+    .nav-cta .btn-login:hover {
+      background: var(--gray-100);
+      color: var(--dark-blue);
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+    }
+
+    .hamburger span {
+      width: 26px;
+      height: 2.5px;
+      background: var(--dark-blue);
+      border-radius: 4px;
+      transition: var(--transition);
+    }
+
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 80px;
+      left: 20px;
+      right: 20px;
+      background: rgba(255,255,255,0.98);
+      backdrop-filter: blur(12px);
+      border-radius: 24px;
+      padding: 30px 24px;
+      box-shadow: var(--shadow-lg);
+      z-index: 999;
+      flex-direction: column;
+      gap: 12px;
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .mobile-nav.open {
+      display: flex;
+    }
+
+    .mobile-nav a {
+      padding: 14px 18px;
+      border-radius: 16px;
+      font-weight: 500;
+      color: var(--gray-800);
+      transition: var(--transition);
+      font-size: 1.05rem;
+    }
+
+    .mobile-nav a:hover,
+    .mobile-nav a.active {
+      background: var(--gray-100);
+      color: var(--forest);
+    }
+
+    .mobile-nav .mobile-cta {
+      margin-top: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .mobile-nav .mobile-cta a {
+      text-align: center;
+      padding: 14px;
+      border-radius: 40px;
+    }
+
+    .mobile-nav .mobile-cta .btn-donate-mobile {
+      background: var(--warm-orange);
+      color: white;
+      font-weight: 600;
+    }
+
+    .mobile-nav .mobile-cta .btn-login-mobile {
+      background: var(--gray-100);
+      color: var(--dark-blue);
+    }
+
+    /* ─────────────── PAGE HERO ─────────────── */
+    .page-hero {
+      padding: 160px 0 60px;
+      background: linear-gradient(135deg, #e8f0e8 0%, #d4e4d4 50%, #c5d8c5 100%);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(44,95,45,0.08) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .page-hero h1 {
+      font-size: clamp(2.8rem, 5vw, 4rem);
+      font-weight: 900;
+      letter-spacing: -1.5px;
+      color: var(--dark-blue);
+      position: relative;
+      z-index: 2;
+    }
+
+    .page-hero h1 .accent {
+      color: var(--forest);
+    }
+
+    .page-hero p {
+      font-size: 1.2rem;
+      color: var(--gray-600);
+      max-width: 600px;
+      margin: 16px auto 0;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ─────────────── DONATION SECTION ─────────────── */
+    .donation-section {
+      padding: 60px 0 80px;
+      background: var(--off-white);
+    }
+
+    .donation-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: start;
+    }
+
+    /* Left: Info & Impact */
+    .donation-info {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 40px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid rgba(0,0,0,0.04);
+    }
+
+    .donation-info h2 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .donation-info .subtitle {
+      color: var(--gray-600);
+      margin-bottom: 28px;
+      font-size: 0.95rem;
+    }
+
+    .impact-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .impact-stat {
+      background: var(--off-white);
+      border-radius: 12px;
+      padding: 18px 16px;
+      text-align: center;
+    }
+
+    .impact-stat .number {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--forest);
+      line-height: 1;
+    }
+
+    .impact-stat .label {
+      font-size: 0.8rem;
+      color: var(--gray-600);
+      margin-top: 4px;
+    }
+
+    .donation-info .child-name {
+      background: rgba(44, 95, 45, 0.06);
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-bottom: 24px;
+      border-left: 4px solid var(--forest);
+    }
+
+    .donation-info .child-name strong {
+      color: var(--forest);
+    }
+
+    .donation-info .note {
+      font-size: 0.85rem;
+      color: var(--gray-600);
+      line-height: 1.6;
+    }
+
+    .donation-info .note i {
+      color: var(--warm-orange);
+      margin-right: 4px;
+    }
+
+    /* Right: Donation Form */
+    .donation-form-wrapper {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 40px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid rgba(0,0,0,0.04);
+    }
+
+    .donation-form-wrapper h2 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .donation-form-wrapper .subtitle {
+      color: var(--gray-600);
+      margin-bottom: 28px;
+      font-size: 0.95rem;
+    }
+
+    .form-group {
+      margin-bottom: 24px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      font-size: 0.85rem;
+      margin-bottom: 6px;
+      color: var(--gray-800);
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 14px 18px;
+      border-radius: 12px;
+      border: 2px solid var(--gray-200);
+      font-family: inherit;
+      font-size: 1rem;
+      transition: var(--transition);
+      background: var(--white);
+      color: var(--dark-blue);
+      outline: none;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+      border-color: var(--forest);
+      box-shadow: 0 0 0 4px rgba(44, 95, 45, 0.08);
+    }
+
+    /* Amount Buttons */
+    .amount-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .amount-btn {
+      padding: 10px 20px;
+      border-radius: 40px;
+      border: 2px solid var(--gray-200);
+      background: transparent;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: var(--transition);
+      font-family: inherit;
+      color: var(--gray-600);
+    }
+
+    .amount-btn:hover {
+      border-color: var(--forest);
+      color: var(--forest);
+    }
+
+    .amount-btn.active {
+      background: var(--forest);
+      border-color: var(--forest);
+      color: white;
+    }
+
+    .amount-btn.custom {
+      border-style: dashed;
+    }
+
+    .custom-amount-input {
+      margin-top: 10px;
+      display: none;
+    }
+
+    .custom-amount-input.show {
+      display: block;
+    }
+
+    .custom-amount-input input {
+      width: 100%;
+      padding: 12px 18px;
+      border-radius: 12px;
+      border: 2px solid var(--gray-200);
+      font-family: inherit;
+      font-size: 1rem;
+      transition: var(--transition);
+      outline: none;
+    }
+
+    .custom-amount-input input:focus {
+      border-color: var(--forest);
+      box-shadow: 0 0 0 4px rgba(44, 95, 45, 0.08);
+    }
+
+    /* Payment Methods */
+    .payment-methods {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 4px;
+    }
+
+    .payment-btn {
+      padding: 14px 16px;
+      border-radius: 12px;
+      border: 2px solid var(--gray-200);
+      background: transparent;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: var(--transition);
+      font-family: inherit;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      color: var(--gray-600);
+    }
+
+    .payment-btn i {
+      font-size: 1.1rem;
+    }
+
+    .payment-btn:hover {
+      border-color: var(--forest);
+      color: var(--forest);
+    }
+
+    .payment-btn.active {
+      background: var(--forest);
+      border-color: var(--forest);
+      color: white;
+    }
+
+    .payment-details {
+      margin-top: 16px;
+      padding: 16px 20px;
+      background: var(--off-white);
+      border-radius: 12px;
+      display: none;
+      border-left: 4px solid var(--forest);
+    }
+
+    .payment-details.show {
+      display: block;
+    }
+
+    .payment-details h4 {
+      font-size: 0.9rem;
+      margin-bottom: 6px;
+    }
+
+    .payment-details p {
+      font-size: 0.85rem;
+      color: var(--gray-600);
+      line-height: 1.6;
+      margin-bottom: 4px;
+    }
+
+    .payment-details .detail-label {
+      font-weight: 600;
+      color: var(--dark-blue);
+    }
+
+    .submit-btn {
+      background: var(--warm-orange);
+      color: var(--dark-blue);
+      padding: 16px 32px;
+      border: none;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: var(--transition);
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .submit-btn:hover {
+      background: var(--sunset-yellow);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(252, 150, 30, 0.3);
+    }
+
+    .secure-note {
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--gray-600);
+      margin-top: 16px;
+    }
+
+    .secure-note i {
+      color: var(--forest);
+    }
+
+    .form-message {
+      margin-top: 16px;
+      text-align: center;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .form-message.success {
+      color: var(--forest);
+    }
+
+    .form-message.error {
+      color: #e74c3c;
+    }
+
+    /* ─────────────── IMPACT SECTION ─────────────── */
+    .impact-breakdown {
+      background: var(--white);
+      padding: 60px 0;
+    }
+
+    .impact-breakdown h2 {
+      text-align: center;
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 12px;
+    }
+
+    .impact-breakdown .subtitle {
+      text-align: center;
+      color: var(--gray-600);
+      max-width: 500px;
+      margin: 0 auto 48px;
+      font-size: 1.05rem;
+    }
+
+    .breakdown-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .breakdown-item {
+      text-align: center;
+      padding: 32px 20px;
+      background: var(--off-white);
+      border-radius: var(--radius);
+      transition: var(--transition);
+      border: 1px solid rgba(0,0,0,0.04);
+    }
+
+    .breakdown-item:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .breakdown-item .icon {
+      font-size: 2.5rem;
+      color: var(--forest);
+      margin-bottom: 12px;
+    }
+
+    .breakdown-item h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .breakdown-item p {
+      color: var(--gray-600);
+      font-size: 0.85rem;
+    }
+
+    /* ─────────────── FOOTER ─────────────── */
+    .footer {
+      background: #0f1a26;
+      color: rgba(255,255,255,0.8);
+      padding: 60px 0 30px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      margin-bottom: 30px;
+    }
+
+    .footer-col h4 {
+      color: white;
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    .footer-col p,
+    .footer-col a {
+      font-size: 0.9rem;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .footer-col a:hover {
+      color: var(--sunset-yellow);
+    }
+
+    .footer-col .social-links {
+      display: flex;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .footer-col .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      transition: var(--transition);
+      font-size: 1.1rem;
+    }
+
+    .footer-col .social-links a:hover {
+      background: var(--forest);
+      color: white;
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-size: 0.85rem;
+      opacity: 0.7;
+    }
+
+    .footer-bottom .credit a {
+      color: var(--sunset-yellow);
+    }
+
+    /* ─────────────── MODAL ─────────────── */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(8px);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: white;
+      max-width: 480px;
+      width: 100%;
+      border-radius: var(--radius);
+      padding: 40px 32px;
+      text-align: center;
+      box-shadow: var(--shadow-lg);
+      animation: slideUp 0.3s ease;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .modal-content .icon {
+      font-size: 4rem;
+      color: var(--forest);
+      margin-bottom: 16px;
+    }
+
+    .modal-content h3 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .modal-content p {
+      color: var(--gray-600);
+      margin-bottom: 8px;
+      font-size: 0.95rem;
+    }
+
+    .modal-content .details {
+      background: var(--off-white);
+      border-radius: 12px;
+      padding: 16px;
+      margin: 20px 0;
+      text-align: left;
+      font-size: 0.9rem;
+    }
+
+    .modal-content .details p {
+      margin-bottom: 4px;
+      color: var(--gray-800);
+    }
+
+    .modal-content .details .label {
+      font-weight: 600;
+      color: var(--dark-blue);
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .modal-actions .btn-modal {
+      padding: 14px 32px;
+      border-radius: 12px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+      font-family: inherit;
+      font-size: 0.95rem;
+    }
+
+    .modal-actions .btn-primary {
+      background: var(--forest);
+      color: white;
+    }
+
+    .modal-actions .btn-primary:hover {
+      background: var(--forest-light);
+      transform: translateY(-2px);
+    }
+
+    .modal-actions .btn-secondary {
+      background: var(--gray-100);
+      color: var(--gray-600);
+    }
+
+    .modal-actions .btn-secondary:hover {
+      background: var(--gray-200);
+    }
+
+    /* ─────────────── RESPONSIVE ─────────────── */
+    @media (max-width: 1024px) {
+      .donation-grid {
+        gap: 30px;
+      }
+
+      .breakdown-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 992px) {
+      .donation-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        top: 12px;
+        padding: 6px 12px 6px 16px;
+        border-radius: 60px;
+        width: calc(100% - 24px);
+      }
+
+      .nav-links,
+      .nav-cta {
+        display: none;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .page-hero {
+        padding: 120px 0 40px;
+      }
+
+      .page-hero h1 {
+        font-size: 2.4rem;
+      }
+
+      .donation-info,
+      .donation-form-wrapper {
+        padding: 28px 20px;
+      }
+
+      .impact-stats {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .payment-methods {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .breakdown-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .modal-content {
+        padding: 30px 20px;
+        margin: 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .donation-info h2,
+      .donation-form-wrapper h2 {
+        font-size: 1.5rem;
+      }
+
+      .amount-options {
+        gap: 8px;
+      }
+
+      .amount-btn {
+        padding: 8px 16px;
+        font-size: 0.8rem;
+      }
+
+      .payment-methods {
+        grid-template-columns: 1fr;
+      }
+
+      .payment-btn {
+        font-size: 0.85rem;
+        padding: 12px 16px;
+      }
+
+      .impact-stats {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+
+      .breakdown-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .modal-actions {
+        flex-direction: column;
+      }
+
+      .modal-actions .btn-modal {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── FLOATING NAVIGATION ─── -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-logo">
+      <img src="images/logo.jpg" alt="Mojake Orphanage" onerror="this.src='https://via.placeholder.com/48x48?text=M'">
+      <span>Mojake<span class="highlight">.</span></span>
+    </div>
+
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="our-story.html">Our Story</a></li>
+      <li><a href="sponsor.html">Sponsor</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+
+    <div class="nav-cta">
+      <button class="btn-login" onclick="window.location.href='login.html'"><i class="fas fa-user"></i> Log in</button>
+      <button class="btn-donate" onclick="window.location.href='donate.html'">Donate</button>
+    </div>
+
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- ─── MOBILE NAV ─── -->
+  <div class="mobile-nav" id="mobileNav">
+    <a href="index.html">Home</a>
+    <a href="our-story.html">Our Story</a>
+    <a href="sponsor.html">Sponsor</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="contact.html">Contact</a>
+    <div class="mobile-cta">
+      <a href="login.html" class="btn-login-mobile"><i class="fas fa-user"></i> Log in</a>
+      <a href="donate.html" class="btn-donate-mobile">Donate</a>
+    </div>
+  </div>
+
+  <!-- ─── PAGE HERO ─── -->
+  <section class="page-hero">
+    <div class="container">
+      <h1>Make a <span class="accent">Donation</span></h1>
+      <p>Your generosity provides education, healthcare, and a loving home to children at Mojake Orphanage.</p>
+    </div>
+  </section>
+
+  <!-- ─── DONATION SECTION ─── -->
+  <section class="donation-section">
+    <div class="container">
+      <div class="donation-grid">
+        <!-- Left: Info & Impact -->
+        <div class="donation-info">
+          <h2>Your Impact</h2>
+          <p class="subtitle">Every donation transforms a child's life. Here's how your support helps.</p>
+
+          <div class="impact-stats">
+            <div class="impact-stat">
+              <div class="number">$25</div>
+              <div class="label">Feeds a child for a week</div>
+            </div>
+            <div class="impact-stat">
+              <div class="number">$50</div>
+              <div class="label">Covers school uniform & supplies</div>
+            </div>
+            <div class="impact-stat">
+              <div class="number">$100</div>
+              <div class="label">Provides healthcare for a month</div>
+            </div>
+            <div class="impact-stat">
+              <div class="number">$250</div>
+              <div class="label">Sponsors a child for a year</div>
+            </div>
+          </div>
+
+          <div id="childNameContainer" class="child-name" style="display:none;">
+            <i class="fas fa-child" style="color: var(--forest);"></i>
+            You are sponsoring: <strong id="childNameDisplay"></strong>
+          </div>
+
+          <div class="note">
+            <i class="fas fa-shield-alt"></i> 100% of your donation goes directly to children's care, education, and well-being.
+          </div>
+        </div>
+
+        <!-- Right: Donation Form -->
+        <div class="donation-form-wrapper">
+          <h2>Make a Donation</h2>
+          <p class="subtitle">Choose your amount and payment method below.</p>
+
+          <form id="donationForm">
+            <!-- Amount Selection -->
+            <div class="form-group">
+              <label>Donation Amount (USD)</label>
+              <div class="amount-options" id="amountOptions">
+                <button type="button" class="amount-btn" data-amount="25">$25</button>
+                <button type="button" class="amount-btn" data-amount="50">$50</button>
+                <button type="button" class="amount-btn active" data-amount="100">$100</button>
+                <button type="button" class="amount-btn" data-amount="250">$250</button>
+                <button type="button" class="amount-btn" data-amount="500">$500</button>
+                <button type="button" class="amount-btn custom" data-amount="custom">Custom</button>
+              </div>
+              <div class="custom-amount-input" id="customAmountInput">
+                <input type="number" id="customAmount" placeholder="Enter amount (USD)" min="5" step="5">
+              </div>
+            </div>
+
+            <!-- Payment Method -->
+            <div class="form-group">
+              <label>Payment Method</label>
+              <div class="payment-methods" id="paymentMethods">
+                <button type="button" class="payment-btn active" data-method="sendwave">
+                  <i class="fas fa-paper-plane"></i> Sendwave
+                </button>
+                <button type="button" class="payment-btn" data-method="remitly">
+                  <i class="fas fa-exchange-alt"></i> Remitly
+                </button>
+                <button type="button" class="payment-btn" data-method="worldremit">
+                  <i class="fas fa-globe"></i> WorldRemit
+                </button>
+                <button type="button" class="payment-btn" data-method="mastercard">
+                  <i class="fab fa-cc-mastercard"></i> Mastercard
+                </button>
+              </div>
+              <div id="paymentDetails" class="payment-details show">
+                <h4><i class="fas fa-info-circle"></i> Sendwave Instructions</h4>
+                <p><span class="detail-label">Recipient:</span> Mojake Orphanage</p>
+                <p><span class="detail-label">Phone:</span> +254 700 123 456</p>
+                <p><span class="detail-label">Reference:</span> Sponsor [Child Name]</p>
+                <p style="margin-top:8px; font-size:0.8rem;">Open Sendwave app, send to the number above, and include the reference.</p>
+              </div>
+            </div>
+
+            <button type="submit" class="submit-btn">
+              <i class="fas fa-heart"></i> Proceed to Donation
+            </button>
+
+            <div class="secure-note">
+              <i class="fas fa-lock"></i> Secure & encrypted — your donation is safe
+            </div>
+
+            <div id="formFeedback" class="form-message"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── IMPACT BREAKDOWN ─── -->
+  <section class="impact-breakdown">
+    <div class="container">
+      <h2>Where Your Donation Goes</h2>
+      <p class="subtitle">Every dollar is carefully allocated to provide the best care possible.</p>
+      <div class="breakdown-grid">
+        <div class="breakdown-item">
+          <div class="icon"><i class="fas fa-utensils"></i></div>
+          <h3>Food & Nutrition</h3>
+          <p>Three balanced meals daily</p>
+        </div>
+        <div class="breakdown-item">
+          <div class="icon"><i class="fas fa-graduation-cap"></i></div>
+          <h3>Education</h3>
+          <p>School fees, uniforms & supplies</p>
+        </div>
+        <div class="breakdown-item">
+          <div class="icon"><i class="fas fa-hospital-alt"></i></div>
+          <h3>Healthcare</h3>
+          <p>Checkups, vaccinations & care</p>
+        </div>
+        <div class="breakdown-item">
+          <div class="icon"><i class="fas fa-home"></i></div>
+          <h3>Shelter & Care</h3>
+          <p>Safe, loving home environment</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CONFIRMATION MODAL ─── -->
+  <div id="confirmationModal" class="modal">
+    <div class="modal-content">
+      <div class="icon"><i class="fas fa-check-circle"></i></div>
+      <h3>Confirm Your Donation</h3>
+      <p id="modalChildInfo"></p>
+      <div class="details" id="modalDetails"></div>
+      <div class="modal-actions">
+        <button class="btn-modal btn-secondary" id="modalCancel">Cancel</button>
+        <button class="btn-modal btn-primary" id="modalConfirm">Donate Now</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── FOOTER ─── -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4>Mojake Orphanage</h4>
+          <p><i class="fas fa-map-marker-alt" style="width:20px;"></i> Kisii County, Kenya</p>
+          <p><i class="fas fa-phone-alt" style="width:20px;"></i> +254 700 123 456</p>
+          <p><i class="fas fa-envelope" style="width:20px;"></i> info@mojakeorphanage.org</p>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <a href="our-story.html">Our Story</a><br>
+          <a href="sponsor.html">Sponsor a Child</a><br>
+          <a href="donate.html">Donate</a><br>
+          <a href="gallery.html">Gallery</a>
+        </div>
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <a href="stories.html">Stories of Hope</a><br>
+          <a href="#">Annual Reports</a><br>
+          <a href="contact.html">Contact Us</a>
+        </div>
+        <div class="footer-col">
+          <h4>Get Involved</h4>
+          <a href="sponsor.html">Sponsor</a><br>
+          <a href="donate.html">Donate</a><br>
+          <a href="contact.html">Volunteer</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span id="currentYear"></span> Mojake Orphanage — Kisii County, Kenya</span>
+        <span class="credit">Developed by <a href="https://www.worldwayswebdevelopers.co.ke" target="_blank">worldways web-developers</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ─── Get child name from URL ───
+    const urlParams = new URLSearchParams(window.location.search);
+    const childName = urlParams.get('child');
+
+    if (childName) {
+      const container = document.getElementById('childNameContainer');
+      const display = document.getElementById('childNameDisplay');
+      container.style.display = 'block';
+      display.textContent = decodeURIComponent(childName);
+    }
+
+    // ─── Amount selection ───
+    const amountBtns = document.querySelectorAll('.amount-btn');
+    const customInput = document.getElementById('customAmount');
+    const customContainer = document.getElementById('customAmountInput');
+    let selectedAmount = 100;
+
+    amountBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        amountBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const value = btn.getAttribute('data-amount');
+        if (value === 'custom') {
+          customContainer.classList.add('show');
+          selectedAmount = parseFloat(customInput.value) || 0;
+        } else {
+          customContainer.classList.remove('show');
+          selectedAmount = parseFloat(value);
+          customInput.value = '';
+        }
+      });
+    });
+
+    customInput.addEventListener('input', () => {
+      if (customInput.value) {
+        amountBtns.forEach(b => b.classList.remove('active'));
+        selectedAmount = parseFloat(customInput.value) || 0;
+      }
+    });
+
+    // ─── Payment method selection ───
+    const paymentBtns = document.querySelectorAll('.payment-btn');
+    const paymentDetails = document.getElementById('paymentDetails');
+    const methodDetails = {
+      sendwave: {
+        name: 'Sendwave',
+        details: [
+          { label: 'Recipient', value: 'Mojake Orphanage' },
+          { label: 'Phone', value: '+254 700 123 456' },
+          { label: 'Reference', value: `Sponsor ${childName || 'Child'}` }
+        ],
+        instructions: 'Open Sendwave app, send to the number above, and include the reference.'
+      },
+      remitly: {
+        name: 'Remitly',
+        details: [
+          { label: 'Recipient', value: 'Mojake Orphanage' },
+          { label: 'Bank', value: 'Equity Bank, Kisii Branch' },
+          { label: 'Account', value: '1234567890' },
+          { label: 'SWIFT', value: 'EQBLKENA' }
+        ],
+        instructions: 'Select Kenya, then use the bank details above. After sending, notify us at info@mojakeorphanage.org.'
+      },
+      worldremit: {
+        name: 'WorldRemit',
+        details: [
+          { label: 'Recipient', value: 'Mojake Orphanage' },
+          { label: 'Mobile Money', value: '+254 700 123 456 (M-Pesa)' },
+          { label: 'Bank', value: 'Equity Bank, Kisii' },
+          { label: 'Account', value: '1234567890' }
+        ],
+        instructions: 'Select Kenya, then choose either M-Pesa or bank deposit. Use reference: Sponsor ' + (childName || 'Child')
+      },
+      mastercard: {
+        name: 'Mastercard',
+        details: [
+          { label: 'Payment', value: 'Secure online card payment' }
+        ],
+        instructions: 'You will be redirected to our secure payment gateway to complete your donation.'
+      }
+    };
+
+    function updatePaymentDetails(method) {
+      const info = methodDetails[method];
+      if (!info) return;
+
+      let html = `<h4><i class="fas fa-info-circle"></i> ${info.name} Instructions</h4>`;
+      info.details.forEach(d => {
+        html += `<p><span class="detail-label">${d.label}:</span> ${d.value}</p>`;
+      });
+      html += `<p style="margin-top:8px; font-size:0.8rem;">${info.instructions}</p>`;
+      paymentDetails.innerHTML = html;
+      paymentDetails.classList.add('show');
+    }
+
+    let selectedMethod = 'sendwave';
+    paymentBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        paymentBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        selectedMethod = btn.getAttribute('data-method');
+        updatePaymentDetails(selectedMethod);
+      });
+    });
+
+    // ─── Modal handling ───
+    const modal = document.getElementById('confirmationModal');
+    const modalChildInfo = document.getElementById('modalChildInfo');
+    const modalDetails = document.getElementById('modalDetails');
+    const modalCancel = document.getElementById('modalCancel');
+    const modalConfirm = document.getElementById('modalConfirm');
+    let pendingAmount = 0;
+
+    function openModal(amount, method) {
+      pendingAmount = amount;
+      const info = methodDetails[method];
+      const childText = childName ? `Sponsoring <strong>${decodeURIComponent(childName)}</strong>` : 'General donation';
+      modalChildInfo.innerHTML = childText;
+
+      let detailsHtml = `<p><strong>Amount:</strong> $${amount.toFixed(2)} USD</p>`;
+      detailsHtml += `<p><strong>Method:</strong> ${info.name}</p>`;
+      detailsHtml += `<hr style="margin:10px 0; border-color: var(--gray-200);">`;
+      info.details.forEach(d => {
+        detailsHtml += `<p><span class="label">${d.label}:</span> ${d.value}</p>`;
+      });
+      modalDetails.innerHTML = detailsHtml;
+
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    modalCancel.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+
+    // ─── Form submission ───
+    const form = document.getElementById('donationForm');
+    const feedback = document.getElementById('formFeedback');
+
+    modalConfirm.addEventListener('click', () => {
+      const info = methodDetails[selectedMethod];
+      const url = info.url || 'https://' + selectedMethod + '.com';
+      window.open(url, '_blank');
+      closeModal();
+      feedback.className = 'form-message success';
+      feedback.innerHTML = `<i class="fas fa-check-circle"></i> Thank you! You will be redirected to ${info.name}.`;
+      form.reset();
+      setTimeout(() => {
+        feedback.innerHTML = '';
+        feedback.className = 'form-message';
+      }, 5000);
+    });
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      let amount = selectedAmount;
+      if (customInput.value) amount = parseFloat(customInput.value);
+
+      if (!amount || amount < 5) {
+        feedback.className = 'form-message error';
+        feedback.innerHTML = 'Please enter a valid donation amount (minimum $5 USD).';
+        return;
+      }
+
+      // Check if a payment method is selected
+      if (!selectedMethod) {
+        feedback.className = 'form-message error';
+        feedback.innerHTML = 'Please select a payment method.';
+        return;
+      }
+
+      openModal(amount, selectedMethod);
+      feedback.innerHTML = '';
+      feedback.className = 'form-message';
+    });
+
+    // ─── Floating navbar scroll effect ───
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 30) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    // ─── Hamburger toggle ───
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobileNav');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      mobileNav.classList.toggle('open');
+    });
+
+    mobileNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        mobileNav.classList.remove('open');
+      });
+    });
+
+    // ─── Dynamic copyright year ───
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

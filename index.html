@@ -1,641 +1,1310 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <title>Mojake Orphanage · Sponsor a Child | Kisii, Kenya</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mojake Orphanage · Home in Kisii, Kenya</title>
+  
   <!-- Font Awesome 6 -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    /* ─────────────── RESET & BASE ─────────────── */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     :root {
       --forest: #2C5F2D;
+      --forest-light: #3d7a3e;
       --dark-blue: #1A2E40;
-      --white: #FFFFFF;
-      --sunset-yellow: #FDCA40;
+      --dark-blue-light: #243b52;
+      --white: #ffffff;
+      --off-white: #f7f9fc;
       --warm-orange: #F79824;
+      --sunset-yellow: #FDCA40;
       --earth-brown: #7B4B3A;
-      --sky-blue: #ADD8E6;
-      --gray-light: #F8F9FA;
-      --shadow: 0 20px 30px -10px rgba(0,0,0,0.15);
-      --transition: all 0.3s ease;
+      --gray-100: #f0f2f5;
+      --gray-200: #e4e7ed;
+      --gray-600: #6b7280;
+      --gray-800: #1f2937;
+      --shadow-sm: 0 2px 12px rgba(0,0,0,0.08);
+      --shadow-md: 0 8px 30px rgba(0,0,0,0.12);
+      --shadow-lg: 0 20px 60px rgba(0,0,0,0.15);
+      --radius: 20px;
+      --transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
-      font-family: 'Open Sans', sans-serif;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       color: var(--dark-blue);
-      background-color: var(--white);
+      background: var(--white);
       line-height: 1.6;
-    }
-    h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; font-weight: 700; }
-    a { text-decoration: none; color: inherit; }
-    .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
-
-    /* Buttons */
-    .btn {
-      display: inline-block;
-      padding: 12px 28px;
-      border-radius: 50px;
-      font-weight: 600;
-      transition: var(--transition);
-      cursor: pointer;
-      border: 2px solid transparent;
-    }
-    .btn-primary {
-      background-color: var(--forest);
-      color: var(--white);
-    }
-    .btn-primary:hover {
-      background-color: #1f451f;
-      transform: translateY(-2px);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
 
-    /* Header (same as other pages) */
-    header {
-      background: linear-gradient(135deg, var(--dark-blue), #0e1f2c);
-      padding: 16px 32px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    img {
+      max-width: 100%;
+      display: block;
     }
-    .nav-bar {
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    section {
+      padding: 80px 0;
+    }
+
+    /* ─────────────── FLOATING NAVIGATION ─────────────── */
+    .navbar {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 40px);
+      max-width: 1200px;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(16px) saturate(180%);
+      -webkit-backdrop-filter: blur(16px) saturate(180%);
+      border-radius: 80px;
+      padding: 8px 16px 8px 24px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      flex-wrap: wrap;
+      z-index: 1000;
+      box-shadow: var(--shadow-md);
+      border: 1px solid rgba(255,255,255,0.3);
+      transition: all 0.3s ease;
     }
-    .logo img { height: 60px; width: auto; border-radius: 8px; }
+
+    .navbar.scrolled {
+      top: 12px;
+      background: rgba(255,255,255,0.96);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nav-logo img {
+      height: 48px;
+      width: auto;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+
+    .nav-logo span {
+      font-weight: 800;
+      font-size: 1.15rem;
+      color: var(--dark-blue);
+      letter-spacing: -0.5px;
+    }
+    .nav-logo span .highlight {
+      color: var(--forest);
+    }
+
     .nav-links {
       display: flex;
-      gap: 36px;
-      font-weight: 600;
-      color: var(--white);
+      align-items: center;
+      gap: 8px;
+      list-style: none;
     }
+
     .nav-links a {
-      position: relative;
-      padding-bottom: 4px;
-    }
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0%;
-      height: 2px;
-      background-color: var(--sunset-yellow);
-      transition: width 0.25s;
-    }
-    .nav-links a:hover::after,
-    .nav-links a.active::after { width: 100%; }
-    .nav-links a.active { color: var(--sunset-yellow); }
-    .nav-buttons {
-      display: flex;
-      gap: 15px;
-      align-items: center;
-    }
-    .ai-btn {
-      background: transparent;
-      border: 2px solid var(--sky-blue);
-      padding: 8px 22px;
-      border-radius: 40px;
-      color: white;
-      font-weight: 700;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .ai-btn:hover { background: var(--sky-blue); color: var(--dark-blue); }
-    .login-btn {
-      background: transparent;
-      border: 2px solid var(--sunset-yellow);
-      padding: 8px 22px;
-      border-radius: 40px;
-      color: white;
-    }
-    .login-btn:hover { background: var(--sunset-yellow); color: var(--dark-blue); }
-    .donate-btn-header {
-      background: var(--warm-orange);
-      padding: 8px 26px;
-      border-radius: 40px;
-      color: var(--dark-blue);
-      font-weight: 700;
-    }
-    .menu-toggle {
-      display: none;
-      font-size: 2rem;
-      color: white;
-      background: transparent;
-      border: none;
-      cursor: pointer;
-    }
-    .mobile-menu {
-      display: none;
-      flex-direction: column;
-      background: var(--dark-blue);
-      margin-top: 20px;
-      border-radius: 20px;
-      padding: 20px;
-      gap: 15px;
-    }
-    .mobile-menu.show { display: flex; }
-    .mobile-menu a {
-      color: white;
-      font-weight: 600;
-      padding: 8px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.2);
-    }
-
-    /* Page Title */
-    .page-title {
-      background: var(--gray-light);
-      padding: 60px 0 40px;
-      text-align: center;
-    }
-    .page-title h1 {
-      font-size: 3rem;
-      margin-bottom: 10px;
-    }
-    .page-title p {
-      max-width: 600px;
-      margin: 0 auto;
-      color: #555;
-    }
-
-    /* Why Sponsor Section (new) */
-    .why-sponsor {
-      background: var(--white);
-      padding: 60px 0;
-      text-align: center;
-    }
-    .why-sponsor h2 {
-      font-size: 2rem;
-      margin-bottom: 40px;
-    }
-    .benefits-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 30px;
-      margin-top: 20px;
-    }
-    .benefit-card {
-      background: var(--gray-light);
-      border-radius: 30px;
-      padding: 30px 20px;
-      transition: var(--transition);
-    }
-    .benefit-card:hover {
-      transform: translateY(-5px);
-      box-shadow: var(--shadow);
-    }
-    .benefit-card i {
-      font-size: 2.5rem;
-      color: var(--forest);
-      margin-bottom: 20px;
-    }
-    .benefit-card h3 {
-      font-size: 1.3rem;
-      margin-bottom: 15px;
-    }
-
-    /* Main content: sidebar + cards */
-    .sponsor-main {
-      padding: 50px 0 80px;
-    }
-    .sponsor-layout {
-      display: flex;
-      gap: 40px;
-    }
-    /* Sidebar filters */
-    .filters {
-      flex: 0 0 280px;
-      background: var(--white);
-      border-radius: 30px;
-      padding: 25px 20px;
-      box-shadow: var(--shadow);
-      align-self: start;
-      position: sticky;
-      top: 20px;
-    }
-    .filters h3 {
-      font-size: 1.5rem;
-      margin-bottom: 20px;
-      border-left: 4px solid var(--forest);
-      padding-left: 12px;
-    }
-    .filter-group {
-      margin-bottom: 30px;
-    }
-    .filter-group label {
-      font-weight: 600;
-      display: block;
-      margin-bottom: 10px;
-    }
-    .filter-options {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-    .filter-btn {
-      background: #f0f0f0;
       padding: 8px 18px;
       border-radius: 40px;
-      cursor: pointer;
-      transition: var(--transition);
+      font-weight: 500;
       font-size: 0.9rem;
-    }
-    .filter-btn.active {
-      background: var(--forest);
-      color: white;
-    }
-    .reset-filters {
-      background: none;
-      border: none;
-      color: var(--warm-orange);
-      cursor: pointer;
-      font-weight: 600;
-      margin-top: 15px;
-      display: inline-block;
+      color: var(--gray-600);
+      transition: var(--transition);
+      position: relative;
     }
 
-    /* Child cards grid */
-    .children-grid {
-      flex: 1;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 30px;
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--dark-blue);
+      background: var(--gray-100);
     }
-    .child-card {
-      background: var(--white);
-      border-radius: 30px;
-      overflow: hidden;
-      box-shadow: var(--shadow);
-      transition: var(--transition);
-      text-align: center;
-      padding: 30px 20px 25px;
-      border: 1px solid #eee;
-    }
-    .child-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 25px 40px -12px rgba(44,95,45,0.3);
-    }
-    .child-avatar {
-      width: 140px;
-      height: 140px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin: 0 auto 20px;
-      border: 4px solid var(--forest);
-      box-shadow: 0 8px 15px rgba(0,0,0,0.1);
-    }
-    .child-card h3 {
-      font-size: 1.7rem;
-      margin-bottom: 5px;
-    }
-    .child-details {
-      margin: 15px 0;
-      color: #555;
-    }
-    .child-details p {
-      margin: 6px 0;
-    }
-    .child-details i {
+
+    .nav-links a.active {
+      font-weight: 600;
       color: var(--forest);
-      width: 24px;
+      background: rgba(44, 95, 45, 0.1);
     }
-    .sponsor-btn {
+
+    .nav-cta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nav-cta .btn-donate {
+      background: var(--warm-orange);
+      color: var(--white);
+      padding: 10px 28px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: var(--transition);
+      border: none;
+      cursor: pointer;
+    }
+
+    .nav-cta .btn-donate:hover {
+      background: #e07f1a;
+      transform: scale(1.04);
+    }
+
+    .nav-cta .btn-login {
+      background: transparent;
+      color: var(--gray-600);
+      padding: 10px 20px;
+      border-radius: 40px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: var(--transition);
+      border: none;
+      cursor: pointer;
+    }
+
+    .nav-cta .btn-login:hover {
+      background: var(--gray-100);
+      color: var(--dark-blue);
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+    }
+
+    .hamburger span {
+      width: 26px;
+      height: 2.5px;
+      background: var(--dark-blue);
+      border-radius: 4px;
+      transition: var(--transition);
+    }
+
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    /* Mobile nav */
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 80px;
+      left: 20px;
+      right: 20px;
+      background: rgba(255,255,255,0.98);
+      backdrop-filter: blur(12px);
+      border-radius: 24px;
+      padding: 30px 24px;
+      box-shadow: var(--shadow-lg);
+      z-index: 999;
+      flex-direction: column;
+      gap: 12px;
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .mobile-nav.open {
+      display: flex;
+    }
+
+    .mobile-nav a {
+      padding: 14px 18px;
+      border-radius: 16px;
+      font-weight: 500;
+      color: var(--gray-800);
+      transition: var(--transition);
+      font-size: 1.05rem;
+    }
+
+    .mobile-nav a:hover,
+    .mobile-nav a.active {
+      background: var(--gray-100);
+      color: var(--forest);
+    }
+
+    .mobile-nav .mobile-cta {
+      margin-top: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .mobile-nav .mobile-cta a {
+      text-align: center;
+      padding: 14px;
+      border-radius: 40px;
+    }
+
+    .mobile-nav .mobile-cta .btn-donate-mobile {
+      background: var(--warm-orange);
+      color: white;
+      font-weight: 600;
+    }
+
+    .mobile-nav .mobile-cta .btn-login-mobile {
+      background: var(--gray-100);
+      color: var(--dark-blue);
+    }
+
+    /* ─────────────── HERO ─────────────── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(135deg, #e8f0e8 0%, #d4e4d4 50%, #c5d8c5 100%);
+      padding-top: 100px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(44,95,45,0.08) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -30%;
+      left: -10%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(253,202,64,0.06) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-content h1 {
+      font-size: clamp(2.8rem, 5.5vw, 4.2rem);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -1.5px;
+      color: var(--dark-blue);
+      margin-bottom: 20px;
+    }
+
+    .hero-content h1 .accent {
+      color: var(--forest);
+      position: relative;
+    }
+
+    .hero-content h1 .accent::after {
+      content: '';
+      position: absolute;
+      bottom: 4px;
+      left: 0;
+      width: 100%;
+      height: 6px;
+      background: var(--sunset-yellow);
+      opacity: 0.4;
+      border-radius: 4px;
+    }
+
+    .hero-content p {
+      font-size: 1.2rem;
+      color: var(--gray-600);
+      max-width: 480px;
+      margin-bottom: 32px;
+      line-height: 1.7;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .hero-buttons .btn-primary {
       background: var(--forest);
       color: white;
-      border: none;
-      padding: 12px 25px;
-      border-radius: 40px;
-      font-weight: 700;
-      margin-top: 10px;
-      cursor: pointer;
+      padding: 16px 36px;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 1rem;
       transition: var(--transition);
-      width: 100%;
+      border: none;
+      cursor: pointer;
     }
-    .sponsor-btn:hover {
-      background: #1f451f;
+
+    .hero-buttons .btn-primary:hover {
+      background: var(--forest-light);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(44,95,45,0.3);
+    }
+
+    .hero-buttons .btn-secondary {
+      background: transparent;
+      color: var(--dark-blue);
+      padding: 16px 36px;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 1rem;
+      border: 2px solid var(--gray-200);
+      transition: var(--transition);
+      cursor: pointer;
+    }
+
+    .hero-buttons .btn-secondary:hover {
+      border-color: var(--forest);
+      background: rgba(44,95,45,0.05);
+    }
+
+    .hero-image {
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      background: #d4e4d4;
+      position: relative;
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 450px;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .hero-image:hover img {
       transform: scale(1.02);
     }
 
-    /* No results */
-    .no-results {
-      text-align: center;
-      padding: 50px;
-      font-size: 1.2rem;
-      color: #777;
+    .hero-stats {
+      display: flex;
+      gap: 40px;
+      margin-top: 40px;
+      padding-top: 32px;
+      border-top: 1px solid rgba(0,0,0,0.06);
     }
 
-    /* Footer */
-    .footer {
+    .hero-stats .stat h3 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--forest);
+      line-height: 1;
+    }
+
+    .hero-stats .stat p {
+      font-size: 0.85rem;
+      color: var(--gray-600);
+      margin-top: 4px;
+    }
+
+    /* ─────────────── SECTION: IMPACT ─────────────── */
+    .impact-section {
+      background: var(--off-white);
+    }
+
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+    }
+
+    .impact-card {
+      background: var(--white);
+      padding: 36px 28px;
+      border-radius: var(--radius);
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      border: 1px solid rgba(0,0,0,0.04);
+    }
+
+    .impact-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .impact-card .icon {
+      font-size: 2.8rem;
+      color: var(--forest);
+      margin-bottom: 16px;
+    }
+
+    .impact-card h3 {
+      font-size: 2.4rem;
+      font-weight: 800;
+      color: var(--dark-blue);
+      line-height: 1;
+    }
+
+    .impact-card p {
+      font-size: 0.95rem;
+      color: var(--gray-600);
+      margin-top: 6px;
+    }
+
+    /* ─────────────── SECTION: ABOUT ─────────────── */
+    .about-section {
+      background: var(--white);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .about-image {
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+    }
+
+    .about-image img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+    }
+
+    .about-content h2 {
+      font-size: 2.6rem;
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin-bottom: 20px;
+    }
+
+    .about-content h2 span {
+      color: var(--forest);
+    }
+
+    .about-content p {
+      color: var(--gray-600);
+      font-size: 1.05rem;
+      margin-bottom: 16px;
+      line-height: 1.8;
+    }
+
+    .about-features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .about-features .feat {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 500;
+    }
+
+    .about-features .feat i {
+      color: var(--forest);
+      font-size: 1.2rem;
+    }
+
+    /* ─────────────── SECTION: HOW TO HELP ─────────────── */
+    .help-section {
+      background: var(--off-white);
+    }
+
+    .help-section h2 {
+      text-align: center;
+      font-size: 2.6rem;
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin-bottom: 12px;
+    }
+
+    .help-section .subtitle {
+      text-align: center;
+      color: var(--gray-600);
+      max-width: 500px;
+      margin: 0 auto 48px;
+      font-size: 1.05rem;
+    }
+
+    .help-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+
+    .help-card {
+      background: var(--white);
+      padding: 40px 32px 36px;
+      border-radius: var(--radius);
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      border: 1px solid rgba(0,0,0,0.04);
+    }
+
+    .help-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .help-card .icon {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+
+    .help-card:nth-child(1) .icon { color: var(--forest); }
+    .help-card:nth-child(2) .icon { color: var(--warm-orange); }
+    .help-card:nth-child(3) .icon { color: var(--earth-brown); }
+
+    .help-card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 12px;
+    }
+
+    .help-card p {
+      color: var(--gray-600);
+      font-size: 0.95rem;
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+
+    .help-card .btn-help {
+      display: inline-block;
+      padding: 12px 32px;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: var(--transition);
+      border: none;
+      cursor: pointer;
+    }
+
+    .help-card:nth-child(1) .btn-help {
+      background: var(--forest);
+      color: white;
+    }
+    .help-card:nth-child(1) .btn-help:hover {
+      background: var(--forest-light);
+    }
+
+    .help-card:nth-child(2) .btn-help {
+      background: var(--warm-orange);
+      color: white;
+    }
+    .help-card:nth-child(2) .btn-help:hover {
+      background: #e07f1a;
+    }
+
+    .help-card:nth-child(3) .btn-help {
+      background: var(--earth-brown);
+      color: white;
+    }
+    .help-card:nth-child(3) .btn-help:hover {
+      background: #5f3a2d;
+    }
+
+    /* ─────────────── SECTION: TESTIMONIALS ─────────────── */
+    .testimonials-section {
+      background: var(--white);
+    }
+
+    .testimonials-section h2 {
+      text-align: center;
+      font-size: 2.6rem;
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin-bottom: 48px;
+    }
+
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+
+    .testimonial-card {
+      background: var(--off-white);
+      padding: 30px 28px;
+      border-radius: var(--radius);
+      transition: var(--transition);
+      border: 1px solid rgba(0,0,0,0.04);
+    }
+
+    .testimonial-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .testimonial-card .stars {
+      color: var(--sunset-yellow);
+      font-size: 1.1rem;
+      margin-bottom: 12px;
+    }
+
+    .testimonial-card blockquote {
+      font-style: italic;
+      color: var(--gray-800);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+
+    .testimonial-card .author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .testimonial-card .author .avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--gray-200);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: var(--forest);
+      font-size: 1.1rem;
+    }
+
+    .testimonial-card .author .info h4 {
+      font-size: 0.95rem;
+    }
+
+    .testimonial-card .author .info p {
+      font-size: 0.8rem;
+      color: var(--gray-600);
+    }
+
+    /* ─────────────── SECTION: NEWSLETTER ─────────────── */
+    .newsletter-section {
       background: var(--dark-blue);
       color: white;
+    }
+
+    .newsletter-inner {
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .newsletter-inner h2 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 12px;
+    }
+
+    .newsletter-inner p {
+      opacity: 0.8;
+      margin-bottom: 32px;
+      font-size: 1.05rem;
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: 12px;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .newsletter-form input {
+      flex: 1;
+      padding: 16px 24px;
+      border-radius: 60px;
+      border: none;
+      font-size: 1rem;
+      outline: none;
+      font-family: inherit;
+    }
+
+    .newsletter-form button {
+      padding: 16px 36px;
+      border-radius: 60px;
+      border: none;
+      background: var(--warm-orange);
+      color: white;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: var(--transition);
+      font-family: inherit;
+    }
+
+    .newsletter-form button:hover {
+      background: var(--sunset-yellow);
+      color: var(--dark-blue);
+    }
+
+    /* ─────────────── FOOTER ─────────────── */
+    .footer {
+      background: #0f1a26;
+      color: rgba(255,255,255,0.8);
       padding: 60px 0 30px;
     }
-    .footer-columns {
+
+    .footer-grid {
       display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
       gap: 40px;
-      border-bottom: 1px solid rgba(255,255,255,0.2);
       padding-bottom: 40px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
       margin-bottom: 30px;
     }
-    .footer-col h4 { font-size: 1.2rem; margin-bottom: 20px; }
-    .footer-col p, .footer-col a { color: rgba(255,255,255,0.8); font-size: 0.95rem; }
-    .footer-col a:hover { color: var(--sunset-yellow); }
-    .quick-links { list-style: none; }
-    .quick-links li { margin-bottom: 12px; }
+
+    .footer-col h4 {
+      color: white;
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    .footer-col p,
+    .footer-col a {
+      font-size: 0.9rem;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .footer-col a:hover {
+      color: var(--sunset-yellow);
+    }
+
+    .footer-col .social-links {
+      display: flex;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .footer-col .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      transition: var(--transition);
+      font-size: 1.1rem;
+    }
+
+    .footer-col .social-links a:hover {
+      background: var(--forest);
+      color: white;
+    }
+
     .footer-bottom {
       display: flex;
       justify-content: space-between;
+      align-items: center;
       flex-wrap: wrap;
-      gap: 20px;
+      gap: 16px;
+      font-size: 0.85rem;
+      opacity: 0.7;
     }
-    .footer-credit a { color: var(--sunset-yellow); text-decoration: underline; }
-    .social a { color: white; margin-right: 15px; font-size: 1.3rem; }
+
+    .footer-bottom .credit a {
+      color: var(--sunset-yellow);
+    }
+
+    /* ─────────────── RESPONSIVE ─────────────── */
+    @media (max-width: 1024px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .hero-image img {
+        height: 350px;
+      }
+
+      .hero-content h1 {
+        font-size: 2.8rem;
+      }
+
+      .impact-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .testimonial-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
 
     @media (max-width: 992px) {
-      .sponsor-layout { flex-direction: column; }
-      .filters { position: static; width: 100%; margin-bottom: 30px; }
-      .filter-options { justify-content: center; }
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .help-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
     }
+
     @media (max-width: 768px) {
-      .nav-links, .nav-buttons { display: none; }
-      .menu-toggle { display: block; }
-      .footer-columns { grid-template-columns: 1fr; text-align: center; }
-      .footer-bottom { flex-direction: column; text-align: center; }
-      .page-title h1 { font-size: 2.5rem; }
-      .child-avatar { width: 120px; height: 120px; }
+      .navbar {
+        top: 12px;
+        padding: 6px 12px 6px 16px;
+        border-radius: 60px;
+        width: calc(100% - 24px);
+      }
+
+      .nav-links,
+      .nav-cta {
+        display: none;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .hero {
+        padding-top: 80px;
+        min-height: auto;
+        padding-bottom: 60px;
+      }
+
+      .hero-content h1 {
+        font-size: 2.4rem;
+      }
+
+      .hero-image img {
+        height: 280px;
+      }
+
+      .hero-stats {
+        gap: 24px;
+        flex-wrap: wrap;
+      }
+
+      .impact-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+
+      .help-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .testimonial-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .newsletter-form {
+        flex-direction: column;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .about-features {
+        grid-template-columns: 1fr;
+      }
+
+      .about-image img {
+        height: 280px;
+      }
+
+      .impact-card h3 {
+        font-size: 1.8rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-content h1 {
+        font-size: 2rem;
+      }
+
+      .hero-buttons .btn-primary,
+      .hero-buttons .btn-secondary {
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+      }
+
+      .impact-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .impact-card {
+        padding: 24px 16px;
+      }
+
+      .impact-card .icon {
+        font-size: 2rem;
+      }
+
+      .impact-card h3 {
+        font-size: 1.5rem;
+      }
     }
   </style>
 </head>
 <body>
-  <header>
-    <div class="nav-bar">
-      <div class="logo">
-        <a href="index.html"><img src="images/logo.jpg" alt="Mojake" onerror="this.src='https://via.placeholder.com/180x80?text=Mojake'"></a>
-      </div>
-      <nav class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="story.html">Our Story</a>
-        <a href="sponsor.html" class="active">Sponsor</a>
-        <a href="stories.html">Stories</a>
-        <a href="contact.html">Contact</a>
-      </nav>
-      <div class="nav-buttons">
-        <a href="https://chat.deepseek.com" target="_blank" class="ai-btn"><i class="fas fa-robot"></i> Ask AI</a>
-        <a href="login.html" class="login-btn"><i class="fas fa-user"></i> Log in</a>
-        <a href="donate.html" class="donate-btn-header">Donate</a>
-      </div>
-      <button class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></button>
-    </div>
-    <div class="mobile-menu" id="mobileMenu">
-      <a href="index.html">Home</a>
-      <a href="story.html">Our Story</a>
-      <a href="sponsor.html" class="active">Sponsor</a>
-      <a href="stories.html">Stories</a>
-      <a href="contact.html">Contact</a>
-      <a href="https://chat.deepseek.com" target="_blank"><i class="fas fa-robot"></i> Ask AI</a>
-      <a href="login.html">Log in</a>
-      <a href="donate.html">Donate</a>
-    </div>
-  </header>
 
-  <main>
-    <div class="page-title">
-      <div class="container">
-        <h1>Sponsor a Child</h1>
-        <p>Choose a child to sponsor and transform their life with education, healthcare, and love.</p>
-      </div>
+  <!-- ─── FLOATING NAVIGATION ─── -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-logo">
+      <img src="images/logo.jpg" alt="Mojake Orphanage" onerror="this.src='https://via.placeholder.com/48x48?text=M'">
+      <span>Mojake<span class="highlight">.</span></span>
     </div>
 
-    <!-- New "Why Sponsor?" Section -->
-    <section class="why-sponsor">
-      <div class="container">
-        <h2>Why Sponsor a Child?</h2>
-        <div class="benefits-grid">
-          <div class="benefit-card">
-            <i class="fas fa-graduation-cap"></i>
-            <h3>Education</h3>
-            <p>Sponsorship covers school fees, uniforms, and supplies.</p>
+    <ul class="nav-links">
+      <li><a href="#" class="active">Home</a></li>
+      <li><a href="our-story.html">Our Story</a></li>
+      <li><a href="sponsor.html">Sponsor</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+
+    <div class="nav-cta">
+      <button class="btn-login" onclick="window.location.href='login.html'"><i class="fas fa-user"></i> Log in</button>
+      <button class="btn-donate" onclick="window.location.href='donate.html'">Donate</button>
+    </div>
+
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- ─── MOBILE NAV ─── -->
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#" class="active">Home</a>
+    <a href="our-story.html">Our Story</a>
+    <a href="sponsor.html">Sponsor</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="contact.html">Contact</a>
+    <div class="mobile-cta">
+      <a href="login.html" class="btn-login-mobile"><i class="fas fa-user"></i> Log in</a>
+      <a href="donate.html" class="btn-donate-mobile">Donate</a>
+    </div>
+  </div>
+
+  <!-- ─── HERO ─── -->
+  <section class="hero" id="home">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <h1>
+            A place to<br>
+            <span class="accent">call home</span> in Kisii
+          </h1>
+          <p>
+            Nurturing orphans and vulnerable children in Kenya through love, 
+            education, and healthcare. Welcome to Mojake Orphanage.
+          </p>
+          <div class="hero-buttons">
+            <button class="btn-primary" onclick="window.location.href='sponsor.html'">
+              Sponsor a Child
+            </button>
+            <button class="btn-secondary" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">
+              Learn More →
+            </button>
           </div>
-          <div class="benefit-card">
-            <i class="fas fa-heartbeat"></i>
-            <h3>Healthcare</h3>
-            <p>Regular checkups, vaccinations, and nutritious meals.</p>
+          <div class="hero-stats">
+            <div class="stat">
+              <h3>10+</h3>
+              <p>Years of service</p>
+            </div>
+            <div class="stat">
+              <h3>50+</h3>
+              <p>Children cared for</p>
+            </div>
+            <div class="stat">
+              <h3>100%</h3>
+              <p>In local schools</p>
+            </div>
           </div>
-          <div class="benefit-card">
-            <i class="fas fa-hand-holding-heart"></i>
-            <h3>Emotional Support</h3>
-            <p>A loving family environment and counselling.</p>
-          </div>
-          <div class="benefit-card">
-            <i class="fas fa-chart-line"></i>
-            <h3>Future Leaders</h3>
-            <p>Empower children to become self-reliant adults.</p>
+        </div>
+        <div class="hero-image">
+          <img src="images/hero1.jpg" alt="Children at Mojake Orphanage" onerror="this.src='https://via.placeholder.com/600x450?text=Mojake+Orphanage'">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── IMPACT ─── -->
+  <section class="impact-section">
+    <div class="container">
+      <div class="impact-grid">
+        <div class="impact-card">
+          <div class="icon"><i class="fas fa-home"></i></div>
+          <h3>10+</h3>
+          <p>Years of Service</p>
+        </div>
+        <div class="impact-card">
+          <div class="icon"><i class="fas fa-users"></i></div>
+          <h3>50+</h3>
+          <p>Children Cared For</p>
+        </div>
+        <div class="impact-card">
+          <div class="icon"><i class="fas fa-graduation-cap"></i></div>
+          <h3>100%</h3>
+          <p>In Local Schools</p>
+        </div>
+        <div class="impact-card">
+          <div class="icon"><i class="fas fa-heart"></i></div>
+          <h3>3</h3>
+          <p>Meals Daily</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── ABOUT ─── -->
+  <section class="about-section" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-image">
+          <img src="images/m1.jpg" alt="Children learning at Mojake" onerror="this.src='https://via.placeholder.com/600x400?text=About+Mojake'">
+        </div>
+        <div class="about-content">
+          <h2>Beyond Shelter, <span>We Build Futures</span></h2>
+          <p>
+            At Mojake Orphanage, we believe that every child deserves more than just a roof over 
+            their head. We provide quality education, emotional support, healthcare, and a 
+            loving family environment.
+          </p>
+          <p>
+            Our holistic approach nurtures the mind, body, and spirit — helping children grow 
+            into confident, self-reliant adults who give back to their community.
+          </p>
+          <div class="about-features">
+            <div class="feat"><i class="fas fa-check-circle"></i> Quality Education</div>
+            <div class="feat"><i class="fas fa-check-circle"></i> Healthcare & Nutrition</div>
+            <div class="feat"><i class="fas fa-check-circle"></i> Emotional Support</div>
+            <div class="feat"><i class="fas fa-check-circle"></i> Skills Development</div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <div class="sponsor-main">
-      <div class="container sponsor-layout">
-        <!-- Filter Sidebar -->
-        <aside class="filters">
-          <h3><i class="fas fa-sliders-h"></i> Filters</h3>
-          <div class="filter-group">
-            <label>Age</label>
-            <div class="filter-options" id="ageFilter">
-              <span data-age="all" class="filter-btn active">All</span>
-              <span data-age="5-7" class="filter-btn">5–7 yrs</span>
-              <span data-age="8-12" class="filter-btn">8–12 yrs</span>
-              <span data-age="13-17" class="filter-btn">13–17 yrs</span>
-            </div>
-          </div>
-          <div class="filter-group">
-            <label>Gender</label>
-            <div class="filter-options" id="genderFilter">
-              <span data-gender="all" class="filter-btn active">All</span>
-              <span data-gender="boy" class="filter-btn">Boy</span>
-              <span data-gender="girl" class="filter-btn">Girl</span>
-            </div>
-          </div>
-          <button class="reset-filters" id="resetFilters"><i class="fas fa-undo-alt"></i> Reset all</button>
-        </aside>
-
-        <!-- Child Cards Grid -->
-        <div class="children-grid" id="childrenGrid"></div>
+  <!-- ─── HOW TO HELP ─── -->
+  <section class="help-section">
+    <div class="container">
+      <h2>How You Can Help</h2>
+      <p class="subtitle">Your support makes a real difference in the lives of these children.</p>
+      <div class="help-grid">
+        <div class="help-card">
+          <div class="icon"><i class="fas fa-hand-holding-heart"></i></div>
+          <h3>Sponsor</h3>
+          <p>Monthly support for one child. Provide uniforms, food, and school fees.</p>
+          <button class="btn-help" onclick="window.location.href='sponsor.html'">Sponsor a Child</button>
+        </div>
+        <div class="help-card">
+          <div class="icon"><i class="fas fa-utensils"></i></div>
+          <h3>Donate</h3>
+          <p>One-time gifts for food, medical supplies, or infrastructure.</p>
+          <button class="btn-help" onclick="window.location.href='donate.html'">Give Once</button>
+        </div>
+        <div class="help-card">
+          <div class="icon"><i class="fas fa-suitcase"></i></div>
+          <h3>Volunteer</h3>
+          <p>Share your skills or time — teaching, farming, mentoring.</p>
+          <button class="btn-help" onclick="window.location.href='contact.html'">Join Us</button>
+        </div>
       </div>
     </div>
-  </main>
+  </section>
 
+  <!-- ─── TESTIMONIALS ─── -->
+  <section class="testimonials-section">
+    <div class="container">
+      <h2>What Our Supporters Say</h2>
+      <div class="testimonial-grid">
+        <div class="testimonial-card">
+          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <blockquote>"Sponsoring a child at Mojake has been the most rewarding decision of my life. Seeing the joy and progress is incredible."</blockquote>
+          <div class="author">
+            <div class="avatar">SM</div>
+            <div class="info">
+              <h4>Sarah M.</h4>
+              <p>Sponsor since 2020</p>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <blockquote>"The dedication of the staff at Mojake is unmatched. Every child is treated with love and dignity. I'm proud to support them."</blockquote>
+          <div class="author">
+            <div class="avatar">JK</div>
+            <div class="info">
+              <h4>James K.</h4>
+              <p>Volunteer</p>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <blockquote>"From the moment I visited, I felt the warmth and hope. Mojake is truly transforming lives in Kisii County."</blockquote>
+          <div class="author">
+            <div class="avatar">AO</div>
+            <div class="info">
+              <h4>Anne O.</h4>
+              <p>Donor</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── NEWSLETTER ─── -->
+  <section class="newsletter-section">
+    <div class="container">
+      <div class="newsletter-inner">
+        <h2>Stay Updated</h2>
+        <p>Get stories, impact reports, and ways to help — straight to your inbox.</p>
+        <form class="newsletter-form" id="newsletterForm">
+          <input type="email" placeholder="Your email address" required>
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ─── -->
   <footer class="footer">
     <div class="container">
-      <div class="footer-columns">
+      <div class="footer-grid">
         <div class="footer-col">
           <h4>Mojake Orphanage</h4>
-          <p><i class="fas fa-map-marker-alt"></i> Kisii County, Kenya</p>
-          <p><i class="fas fa-phone-alt"></i> +254 700 123 456</p>
-          <p><i class="fas fa-envelope"></i> info@mojakeorphanage.org</p>
-        </div>
-        <div class="footer-col">
-          <h4>Quick Links</h4>
-          <ul class="quick-links">
-            <li><a href="our-story.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
-            <li><a href="sponsor.html"><i class="fas fa-chevron-right"></i> Sponsor a Child</a></li>
-            <li><a href="donate.html"><i class="fas fa-chevron-right"></i> Donate</a></li>
-            <li><a href="donate.html"><i class="fas fa-chevron-right"></i> Volunteer</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Resources</h4>
-          <ul class="quick-links">
-            <li><a href="stories.html"><i class="fas fa-chevron-right"></i> News & Stories</a></li>
-            <li><a href="#"><i class="fas fa-chevron-right"></i> Annual Reports</a></li>
-            <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Follow Us</h4>
-          <div class="social">
+          <p><i class="fas fa-map-marker-alt" style="width:20px;"></i> Kisii County, Kenya</p>
+          <p><i class="fas fa-phone-alt" style="width:20px;"></i> +254 700 123 456</p>
+          <p><i class="fas fa-envelope" style="width:20px;"></i> info@mojakeorphanage.org</p>
+          <div class="social-links">
             <a href="#"><i class="fab fa-facebook-f"></i></a>
             <a href="#"><i class="fab fa-twitter"></i></a>
             <a href="#"><i class="fab fa-instagram"></i></a>
             <a href="#"><i class="fab fa-youtube"></i></a>
           </div>
         </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <a href="our-story.html">Our Story</a><br>
+          <a href="sponsor.html">Sponsor a Child</a><br>
+          <a href="donate.html">Donate</a><br>
+          <a href="gallery.html">Gallery</a>
+        </div>
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <a href="stories.html">Stories of Hope</a><br>
+          <a href="#">Annual Reports</a><br>
+          <a href="contact.html">Contact Us</a>
+        </div>
+        <div class="footer-col">
+          <h4>Get Involved</h4>
+          <a href="sponsor.html">Sponsor</a><br>
+          <a href="donate.html">Donate</a><br>
+          <a href="contact.html">Volunteer</a>
+        </div>
       </div>
       <div class="footer-bottom">
-        <div>© <span id="currentYear"></span> Mojake Orphanage — Kisii County, Kenya</div>
-        <div class="footer-credit">Developed by <a href="https://www.worldwayswebdevelopers.co.ke" target="_blank">worldways web-developers</a></div>
+        <span>© <span id="currentYear"></span> Mojake Orphanage — Kisii County, Kenya</span>
+        <span class="credit">Developed by <a href="https://www.worldwayswebdevelopers.co.ke" target="_blank">worldways web-developers</a></span>
       </div>
     </div>
   </footer>
 
   <script>
-    // Sample children data with local images (m1.jpg, m2.jpg, etc.)
-    const childrenData = [
-      { id: 1, name: "James", age: 9, gender: "boy", hobby: "Loves football ⚽", img: "m1.jpg", ageGroup: "8-12" },
-      { id: 2, name: "Amina", age: 12, gender: "girl", hobby: "Dreams of becoming a doctor 🩺", img: "m2.jpg", ageGroup: "8-12" },
-      { id: 3, name: "Grace", age: 7, gender: "girl", hobby: "Loves singing and dancing 🎤", img: "m1.jpg", ageGroup: "5-7" },
-      { id: 4, name: "Daniel", age: 14, gender: "boy", hobby: "Enjoys drawing and art 🎨", img: "m2.jpg", ageGroup: "13-17" },
-      { id: 5, name: "Mary", age: 6, gender: "girl", hobby: "Loves reading storybooks 📚", img: "m1.jpg", ageGroup: "5-7" },
-      { id: 6, name: "Samuel", age: 10, gender: "boy", hobby: "Passionate about mathematics 🧮", img: "m2.jpg", ageGroup: "8-12" },
-      { id: 7, name: "Esther", age: 15, gender: "girl", hobby: "Wants to be a teacher 👩‍🏫", img: "m1.jpg", ageGroup: "13-17" },
-      { id: 8, name: "Brian", age: 8, gender: "boy", hobby: "Loves playing with toy cars 🚗", img: "m2.jpg", ageGroup: "5-7" }
-    ];
-
-    // Fallback placeholder image
-    const placeholderImg = "https://via.placeholder.com/140x140?text=Child";
-
-    // Render cards based on filters
-    function renderChildren(ageFilter, genderFilter) {
-      const grid = document.getElementById("childrenGrid");
-      let filtered = [...childrenData];
-
-      if (ageFilter !== "all") {
-        filtered = filtered.filter(child => child.ageGroup === ageFilter);
-      }
-      if (genderFilter !== "all") {
-        filtered = filtered.filter(child => child.gender === genderFilter);
-      }
-
-      if (filtered.length === 0) {
-        grid.innerHTML = `<div class="no-results"><i class="fas fa-child"></i> No children match the filters. Try adjusting your search.</div>`;
-        return;
-      }
-
-      let html = "";
-      filtered.forEach(child => {
-        // Use local images (m1.jpg, m2.jpg) – fallback to placeholder if not found
-        const imgSrc = child.img ? child.img : placeholderImg;
-        html += `
-          <div class="child-card" data-id="${child.id}">
-            <img src="${imgSrc}" alt="${child.name}" class="child-avatar" onerror="this.src='${placeholderImg}'">
-            <h3>${child.name}</h3>
-            <div class="child-details">
-              <p><i class="fas fa-calendar-alt"></i> Age: ${child.age}</p>
-              <p><i class="fas fa-heart"></i> ${child.hobby}</p>
-            </div>
-            <button class="sponsor-btn" data-name="${child.name}" data-id="${child.id}">Sponsor ${child.name}</button>
-          </div>
-        `;
-      });
-      grid.innerHTML = html;
-
-      // Attach sponsor button events to redirect to donate.html with child name
-      document.querySelectorAll('.sponsor-btn').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-          const childName = btn.getAttribute('data-name');
-          window.location.href = `donate.html?child=${encodeURIComponent(childName)}`;
-        });
-      });
-    }
-
-    // Filter state
-    let currentAge = "all";
-    let currentGender = "all";
-
-    function updateFilters() {
-      renderChildren(currentAge, currentGender);
-    }
-
-    // Set up filter buttons
-    const ageBtns = document.querySelectorAll('#ageFilter .filter-btn');
-    const genderBtns = document.querySelectorAll('#genderFilter .filter-btn');
-
-    ageBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        ageBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        currentAge = btn.getAttribute('data-age');
-        updateFilters();
-      });
-    });
-
-    genderBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        genderBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        currentGender = btn.getAttribute('data-gender');
-        updateFilters();
-      });
-    });
-
-    document.getElementById('resetFilters').addEventListener('click', () => {
-      currentAge = "all";
-      currentGender = "all";
-      ageBtns.forEach(btn => {
-        if (btn.getAttribute('data-age') === 'all') btn.classList.add('active');
-        else btn.classList.remove('active');
-      });
-      genderBtns.forEach(btn => {
-        if (btn.getAttribute('data-gender') === 'all') btn.classList.add('active');
-        else btn.classList.remove('active');
-      });
-      updateFilters();
-    });
-
-    // Mobile menu toggle
-    const menuToggle = document.getElementById('menuToggle');
-    const mobileMenu = document.getElementById('mobileMenu');
-    menuToggle.addEventListener('click', () => {
-      mobileMenu.classList.toggle('show');
-      const icon = menuToggle.querySelector('i');
-      if (mobileMenu.classList.contains('show')) {
-        icon.classList.remove('fa-bars');
-        icon.classList.add('fa-times');
+    // ─── Floating navbar scroll effect ───
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 30) {
+        navbar.classList.add('scrolled');
       } else {
-        icon.classList.remove('fa-times');
-        icon.classList.add('fa-bars');
+        navbar.classList.remove('scrolled');
       }
     });
 
-    // Dynamic copyright year
-    document.getElementById('currentYear').textContent = new Date().getFullYear();
+    // ─── Hamburger toggle ───
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobileNav');
 
-    // Initial render
-    renderChildren(currentAge, currentGender);
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      mobileNav.classList.toggle('open');
+    });
+
+    // Close mobile nav on link click
+    mobileNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        mobileNav.classList.remove('open');
+      });
+    });
+
+    // ─── Newsletter form ───
+    const newsletterForm = document.getElementById('newsletterForm');
+    newsletterForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const input = newsletterForm.querySelector('input');
+      if (input.value) {
+        alert('Thank you for subscribing! You will receive our updates.');
+        input.value = '';
+      }
+    });
+
+    // ─── Dynamic copyright year ───
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
